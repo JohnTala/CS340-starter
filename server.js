@@ -1,21 +1,28 @@
-const express = require("express")
-require("dotenv").config()
-const app = express()
-const static = require("./routes/static")
-const expressEjsLayouts = require("express-ejs-layouts")
+// server.js
+const express = require("express");
+require("dotenv").config();
+const expressEjsLayouts = require("express-ejs-layouts");
+const staticRouter = require("./routes/static");
 
-app.set("view engine", "ejs")
-app.use(expressEjsLayouts)
-app.set("layout", "./layouts/layout")
+const app = express();
 
+// View Engine
+app.set("view engine", "ejs");
+app.use(expressEjsLayouts);
+app.set("layout", "./layouts/layout");
+
+// Static Files
+app.use("/", staticRouter);
+
+// Routes
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home" })
-})
+  res.render("index", { title: "Home" });
+});
 
-app.use("/public", static)
+// Start server
+const port = process.env.PORT || 3000;
+const host = process.env.HOST || "localhost";
 
-const port = process.env.PORT || 3000
-
-app.listen(port, () => {
-  console.log(`app listening on port ${port}`)
-})
+app.listen(port, host, () => {
+  console.log(`Server running at http://${host}:${port}`);
+});
