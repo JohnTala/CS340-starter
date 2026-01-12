@@ -1,28 +1,41 @@
-// server.js
+
 const express = require("express");
+const path = require("path");
 require("dotenv").config();
 const expressEjsLayouts = require("express-ejs-layouts");
-const staticRouter = require("./routes/static");
+
+const staticRoutes = require("./routes/static");
 
 const app = express();
 
-// View Engine
+/* 
+   View Engine
+====================== */
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use(expressEjsLayouts);
-app.set("layout", "./layouts/layout");
+app.set("layout", "layouts/layout");
 
-// Static Files
-app.use("/", staticRouter);
+/* 
+   Middleware
+====================== */
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-// Routes
+/* 
+   Routes
+====================== */
+app.use(staticRoutes);
+
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
 });
 
-// Start server
-const port = process.env.PORT || 3000;
-const host = process.env.HOST || "localhost";
+/*
+   Server
+====================== */
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, host, () => {
-  console.log(`Server running at http://${host}:${port}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(` Server running on port ${PORT}`);
 });
