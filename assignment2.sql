@@ -1,3 +1,35 @@
+
+CREATE TABLE classification (
+  classification_id SERIAL PRIMARY KEY,
+  classification_name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE inventory (
+  inv_id SERIAL PRIMARY KEY,
+  inv_make VARCHAR(30) NOT NULL,
+  inv_model VARCHAR(30) NOT NULL,
+  inv_year CHAR(4) NOT NULL,
+  inv_description TEXT NOT NULL,
+  inv_image VARCHAR(255) NOT NULL,
+  inv_thumbnail VARCHAR(255) NOT NULL,
+  inv_price NUMERIC(10,2) NOT NULL,
+  inv_miles INT NOT NULL,
+  inv_color VARCHAR(20) NOT NULL,
+  classification_id INT NOT NULL,
+  CONSTRAINT fk_classification
+    FOREIGN KEY (classification_id)
+    REFERENCES classification(classification_id)
+);
+
+CREATE TABLE account (
+  account_id SERIAL PRIMARY KEY,
+  account_firstname VARCHAR(50) NOT NULL,
+  account_lastname VARCHAR(50) NOT NULL,
+  account_email VARCHAR(100) UNIQUE NOT NULL,
+  account_password VARCHAR(255) NOT NULL,
+  account_type VARCHAR(20) DEFAULT 'Client'
+);
+
 -- Tony Stark insert
 INSERT INTO account (account_firstname, account_lastname, account_email, account_password)
 VALUES ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n');
