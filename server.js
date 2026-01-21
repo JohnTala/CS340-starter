@@ -5,6 +5,7 @@ require("dotenv").config();
 const expressEjsLayouts = require("express-ejs-layouts");
 
 const staticRoutes = require("./routes/static");
+const baseController = require("./controllers/baseController");
 
 const app = express();
 
@@ -27,9 +28,10 @@ app.use(express.json());
 ====================== */
 app.use(staticRoutes);
 
-app.get("/", (req, res) => {
-  res.render("index", { title: "Home" });
-});
+app.get("/",baseController.buildHome)
+// app.get("/", (req, res) => {
+//   res.render("index", { title: "Home" });
+// });
 
 /*
    Server
