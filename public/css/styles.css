@@ -1,0 +1,215 @@
+
+/* GLOBAL RESET & BASE */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-image: url("/assets/images/site/small_check.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+/* WRAPPER & HEADER */
+#wrapper {
+  background-color: #fff;
+  margin: 10px 25px;
+  border: 4px solid #6ab4aa;
+  border-radius: 10px;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  background-color: #6ab4aa;
+  margin: 0 10px;
+  padding: 10px 0;
+  font-weight: 600;
+}
+
+nav ul li a,
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* IMAGE RESET */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* FEATURED VEHICLE */
+#featured-vehicles {
+  padding: 10px;
+}
+
+#featured-vehicles h1 {
+  margin-left: 10px;
+}
+
+
+/* VEHICLE CARD  */
+
+.vehicle-card {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#delorean {
+  width: 100%;
+}
+
+/* OVERLAY   */
+.own_today {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 240px;
+  height: 250px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-left: 6px solid #00bcd4;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: start;
+  justify-content: space-between;
+
+}
+
+.car-info span {
+  display: block;
+  color: #00bcd4;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.car-info span:nth-child(1) {
+  font-size: 1.3rem;
+  font-weight: 800;
+
+}
+.car-info span{
+  font-weight: 600;
+  font-size: larger;
+}
+
+.own_today img {
+  width: 150px;
+}
+
+/* UPGRADES + REVIEWS GRID */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+  align-items: start;
+}
+/* UPGRADES SECTION  */
+
+.upgrades h2 {
+  margin-left: 10px;
+  margin-bottom: 40px;
+}
+
+.delorean-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: 10px;
+}
+
+/* Individual upgrade */
+.upgrade-item {
+  width: 190px;
+  text-align: center;
+}
+
+/* Blue image box */
+.upgrade-box {
+  background-color: #00bcd4;
+  height: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upgrade-box img {
+  max-height: 50px;
+}
+
+/* Caption BELOW box */
+.upgrade-item figcaption {
+  margin-top: 6px;
+}
+
+.upgrade-item figcaption a {
+  color: #1e4bd1;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/* REVIEWS SECTION */
+
+.reviews h2 {
+  margin-bottom: 40px;
+}
+
+.review-list {
+
+  padding-left: 10px;
+}
+
+.review-list li {
+  margin-bottom: 10px;
+  
+}
+footer p{
+  margin-left: 10px;
+  font-weight:bolder ;
+}
+
+/* RESPONSIVE/MOBILE - LAYOUT */
+
+@media (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .own_today {
+    width: 180px;
+    top: 15px;
+    left: 15px;
+    padding: 10px;
+  }
+
+  .own_today img {
+    width: 120px;
+  }
+
+  .delorean-parts {
+    justify-content: center;
+  }
+}

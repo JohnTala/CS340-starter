@@ -1,0 +1,16 @@
+<% if (title) { %>
+  <!-- If we got a title from the controller, show it on the page -->
+  <h1><%= title %></h1>
+<% } else {
+  // If something went wrong and there's no title,
+  // send the user back to the home page
+  res.redirect('/')
+} %>
+
+<%# messages() %>
+<!-- Leaving this here for now.
+     This will be used later to show messages to the user. -->
+
+<%- grid %>
+<!-- This outputs the grid HTML exactly as it was built in the controller.
+     We use unescaped output because grid already contains valid markup. -->
