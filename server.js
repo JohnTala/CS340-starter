@@ -32,6 +32,7 @@ app.get("/",baseController.buildHome)
 // app.get("/", (req, res) => {
 //   res.render("index", { title: "Home" });
 // });
+app.use("/inv",inventoryRoute)
 
 /*
    Server
