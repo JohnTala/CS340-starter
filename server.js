@@ -6,6 +6,7 @@ const expressEjsLayouts = require("express-ejs-layouts");
 
 const staticRoutes = require("./routes/static");
 const baseController = require("./controllers/baseController");
+const inventoryRoute = require("./routes/inventoryRoute");
 
 const app = express();
 
@@ -32,7 +33,8 @@ app.get("/",baseController.buildHome)
 // app.get("/", (req, res) => {
 //   res.render("index", { title: "Home" });
 // });
-app.use("/inv",inventoryRoute)
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
 /*
    Server
