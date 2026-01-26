@@ -1,4 +1,3 @@
-
 /* GLOBAL RESET & BASE */
 *,
 *::before,
@@ -50,7 +49,6 @@ header a {
 }
 
 /* IMAGE RESET */
-
 img {
   max-width: 100%;
   height: auto;
@@ -66,9 +64,7 @@ img {
   margin-left: 10px;
 }
 
-
-/* VEHICLE CARD  */
-
+/* VEHICLE CARD */
 .vehicle-card {
   position: relative;
   max-width: 900px;
@@ -79,7 +75,7 @@ img {
   width: 100%;
 }
 
-/* OVERLAY   */
+/* OVERLAY */
 .own_today {
   position: absolute;
   top: 30px;
@@ -94,7 +90,6 @@ img {
   gap: 12px;
   align-items: start;
   justify-content: space-between;
-
 }
 
 .car-info span {
@@ -107,9 +102,9 @@ img {
 .car-info span:nth-child(1) {
   font-size: 1.3rem;
   font-weight: 800;
-
 }
-.car-info span{
+
+.car-info span {
   font-weight: 600;
   font-size: larger;
 }
@@ -126,8 +121,8 @@ img {
   margin-top: 30px;
   align-items: start;
 }
-/* UPGRADES SECTION  */
 
+/* UPGRADES SECTION */
 .upgrades h2 {
   margin-left: 10px;
   margin-bottom: 40px;
@@ -172,44 +167,145 @@ img {
 }
 
 /* REVIEWS SECTION */
-
 .reviews h2 {
   margin-bottom: 40px;
 }
 
 .review-list {
-
   padding-left: 10px;
 }
 
 .review-list li {
   margin-bottom: 10px;
-  
 }
-footer p{
+
+footer p {
   margin-left: 10px;
-  font-weight:bolder ;
+  font-weight: bolder;
 }
 
-/* RESPONSIVE/MOBILE - LAYOUT */
+/* =========================
+   DYNAMIC NAVIGATION & INVENTORY GRID
+========================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #6ab4aa;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
 
+.navbar .logo a {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#nav-links ul {
+  display: flex;
+  gap: 15px;
+}
+
+#nav-links ul li a {
+  color: #fff;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+#nav-links ul li a:hover {
+  background-color: #ff6f61;
+}
+
+/* INVENTORY GRID */
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+#inv-display li {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  list-style: none;
+}
+
+#inv-display li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+#inv-display li img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+#inv-display li:hover img {
+  transform: scale(1.05);
+}
+
+.namePrice {
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.namePrice h2 {
+  margin: 10px 0 5px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.namePrice h2 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.namePrice h2 a:hover {
+  color: #ff6f61;
+}
+
+.namePrice span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ff6f61;
+}
+
+.notice {
+  padding: 20px;
+  text-align: center;
+  background-color: #ffecec;
+  color: #d9534f;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE INVENTORY GRID
+========================= */
 @media (max-width: 768px) {
-  .info-grid {
+  #inv-display {
     grid-template-columns: 1fr;
+    padding: 15px;
   }
 
-  .own_today {
-    width: 180px;
-    top: 15px;
-    left: 15px;
-    padding: 10px;
+  .namePrice h2 {
+    font-size: 1rem;
   }
 
-  .own_today img {
-    width: 120px;
-  }
-
-  .delorean-parts {
-    justify-content: center;
+  .namePrice span {
+    font-size: 1rem;
   }
 }
