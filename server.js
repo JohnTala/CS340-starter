@@ -1,46 +1,42 @@
-
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
 const expressEjsLayouts = require("express-ejs-layouts");
 
-const staticRoutes = require("./routes/static");
+// Controllers
 const baseController = require("./controllers/baseController");
+
+// Routes
 const inventoryRoute = require("./routes/inventoryRoute");
 
 const app = express();
 
-/* 
-   View Engine
-====================== */
+// ===== View Engine =====
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(expressEjsLayouts);
 app.set("layout", "layouts/layout");
 
-/* 
-   Middleware
-====================== */
+// ===== Middleware =====
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-/* 
-   Routes
-====================== */
-app.use(staticRoutes);
+// ===== Static Files =====
+app.use("/assets", express.static(path.join(__dirname, "public")));
 
-app.get("/",baseController.buildHome)
-// app.get("/", (req, res) => {
-//   res.render("index", { title: "Home" });
-// });
-// Inventory routes
-app.use("/inv", inventoryRoute)
+// ===== Routes =====
 
-/*
-   Server
-====================== */
-const PORT = process.env.PORT || 3000;
+// Home page
+app.get("/", baseController.buildHome);
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(` Server running on port ${PORT}`);
+// Inventory pages (all /inv routes go through the router)
+app.use("/inv", inventoryRoute);
+
+// Catch-all 404 page (optional)
+app.use((req, res) => {
+  res.status(404).render("404", { title: "Page Not Found" });
 });
+
+// ===== Start Server =====
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
