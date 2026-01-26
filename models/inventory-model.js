@@ -1,8 +1,5 @@
 const pool = require("../database/");
 
-/* ***************************
- * Get all classification data
- *************************** */
 async function getClassifications() {
   try {
     const data = await pool.query(
@@ -15,9 +12,6 @@ async function getClassifications() {
   }
 }
 
-/* ***************************
- * Get all inventory items and classification_name by classification_id
- *************************** */
 async function getInventoryByClassificationId(classification_id) {
   try {
     const data = await pool.query(
@@ -35,9 +29,6 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
-/* ***************************
- * Get a single inventory item by inv_id
- *************************** */
 async function getInventoryById(inv_id) {
   try {
     const result = await pool.query(

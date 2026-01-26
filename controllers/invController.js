@@ -1,12 +1,9 @@
-
 const invModel = require("../models/inventory-model");
 const utilities = require("../utilities/");
 
 const invCont = {};
 
-/* ***************************
- * Build inventory by classification view
- ************************** */
+/* Inventory by classification */
 invCont.buildByClassificationId = async function (req, res, next) {
   try {
     const classification_id = req.params.classificationId;
@@ -31,26 +28,15 @@ invCont.buildByClassificationId = async function (req, res, next) {
   }
 };
 
-/* ***************************
- * Build single vehicle detail view
- ************************** */
+/* Single vehicle detail */
 invCont.buildVehicleDetail = async function (req, res, next) {
   try {
-    const inv_id = req.params.invId; // make sure your route uses :invId
+    const inv_id = req.params.invId;
     const vehicle = await invModel.getInventoryById(inv_id);
     const nav = await utilities.getNav();
 
-    if (!vehicle) {
-      // Friendly fallback instead of 404 error
-      return res.render("./inventory/detail", {
-        title: "Vehicle Not Found",
-        nav,
-        vehicle: null,
-      });
-    }
-
     res.render("./inventory/detail", {
-      title: `${vehicle.inv_make} ${vehicle.inv_model}`,
+      title: vehicle ? `${vehicle.inv_make} ${vehicle.inv_model}` : "Vehicle Not Found",
       nav,
       vehicle,
     });
@@ -66,5 +52,3 @@ invCont.buildVehicleDetail = async function (req, res, next) {
 };
 
 module.exports = invCont;
-
- 

@@ -1,4 +1,3 @@
-
 const express = require("express");
 const path = require("path");
 require("dotenv").config();
@@ -22,18 +21,14 @@ app.set("layout", "layouts/layout");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ===== Static Files =====
-app.use("/assets", express.static(path.join(__dirname, "public")));
+// ===== Static Files (CORRECT) =====
+app.use(express.static(path.join(__dirname, "public")));
 
 // ===== Routes =====
-
-// Home page
 app.get("/", baseController.buildHome);
-
-// Inventory pages (all /inv routes go through the router)
 app.use("/inv", inventoryRoute);
 
-// Catch-all 404 page (optional)
+// ===== 404 Page =====
 app.use((req, res) => {
   res.status(404).render("404", { title: "Page Not Found" });
 });
