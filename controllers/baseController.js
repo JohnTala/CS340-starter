@@ -1,9 +1,17 @@
 const utilities = require("../utilities/");
 const baseController = {};
 
-baseController.buildHome = async function(req, res) {
+/* ************************
+ * Build Home Page
+ ************************** */
+baseController.buildHome = async (req, res) => {
+  // Example home page data could be fetched here
   const nav = await utilities.getNav();
-  res.render("index", { title: "Home", nav });
+
+  res.render("index", {
+    title: "Welcome to CSE Motors",
+    nav,
+  });
 };
 
 module.exports = baseController;

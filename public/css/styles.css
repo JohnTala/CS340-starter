@@ -309,3 +309,298 @@ footer p {
     font-size: 1rem;
   }
 }
+
+/* =========================
+   INVENTORY CLASSIFICATION GRID (UPDATED)
+========================= */
+
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inventory-grid .vehicle-card {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+}
+
+.inventory-grid .vehicle-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-grid .vehicle-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.inventory-grid .vehicle-card h2 {
+  margin: 12px 0 5px;
+  font-size: 1.2rem;
+}
+
+.inventory-grid .vehicle-card h2 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.inventory-grid .vehicle-card h2 a:hover {
+  color: #ff6f61;
+}
+
+.inventory-grid .vehicle-card span {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #ff6f61;
+  margin-bottom: 5px;
+}
+
+.inventory-grid .vehicle-card p {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* =========================
+   VEHICLE DETAIL PAGE
+========================= */
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.vehicle-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.vehicle-info p {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+.vehicle-info strong {
+  color: #333;
+}
+
+/* =========================
+   RESPONSIVE ADJUSTMENTS
+========================= */
+
+@media (max-width: 768px) {
+  .inventory-grid {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
+
+  .vehicle-detail {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+
+
+
+/* =========================
+   404 / ERROR PAGE STYLES
+========================= */
+
+.error-page {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Face */
+.error-page .face {
+  width: 300px;
+  height: 300px;
+  border: 4px solid #383A41;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+  margin: 100px auto 0;
+  position: relative;
+}
+
+/* Band */
+.error-page .band {
+  width: 350px;
+  height: 27px;
+  border: 4px solid #383A41;
+  border-radius: 5px;
+  margin-left: -25px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.error-page .band .red {
+  height: 33.33%;
+  background-color: #EB6D6D;
+}
+
+.error-page .band .white {
+  height: 33.33%;
+  background-color: #FFFFFF;
+}
+
+.error-page .band .blue {
+  height: 33.33%;
+  background-color: #5E7FDC;
+}
+
+.error-page .band::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 27px;
+  background-color: rgba(255, 255, 255, 0.3);
+  left: 0;
+}
+
+.error-page .band::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 27px;
+  background-color: rgba(56, 58, 65, 0.3);
+  right: 0;
+  top: 0;
+}
+
+/* Eyes */
+.error-page .eyes {
+  width: 128px;
+  margin: 40px auto 0;
+}
+
+.error-page .eyes::before,
+.error-page .eyes::after {
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 15px;
+  border: 7px solid #383A41;
+  border-bottom: 0;
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+.error-page .eyes::before {
+  margin-right: 20px;
+}
+
+.error-page .eyes::after {
+  margin-left: 20px;
+}
+
+/* Dimples */
+.error-page .dimples {
+  width: 180px;
+  margin: 15px auto 0;
+}
+
+.error-page .dimples::before,
+.error-page .dimples::after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(235, 109, 109, 0.4);
+}
+
+.error-page .dimples::before {
+  margin-right: 80px;
+}
+
+.error-page .dimples::after {
+  margin-left: 80px;
+}
+
+/* Mouth */
+.error-page .mouth {
+  width: 40px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #383A41;
+  margin: 25px auto 0;
+}
+
+/* Title */
+.error-page h1 {
+  font-weight: 800;
+  color: #383A41;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
+
+/* Button */
+.error-page .btn {
+  padding: 20px;
+  background-color: #5E7FDC;
+  color: #FFFFFF;
+  width: 320px;
+  margin: 80px auto 50px;
+  text-align: center;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.error-page .btn:hover {
+  background-color: rgba(94, 127, 220, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .error-page .face {
+    margin-top: 40px;
+    transform: scale(0.8);
+  }
+
+  .error-page h1 {
+    font-size: 2rem;
+    padding: 0 20px;
+  }
+
+  .error-page .btn {
+    width: 200px;
+    margin-top: 60px;
+  }
+}
+
+/* =================================================
+   FIX: Prevent inventory cards/images from stretching
+   when only 1–2 vehicles exist & center the grid
+================================================= */
+
+#inv-display {
+  justify-content: center;
+}
+
+#inv-display li {
+  max-width: 400px;   /* keeps cards reasonable */
+  width: 100%;
+  margin: 0 auto;
+}
