@@ -5,9 +5,10 @@ const expressEjsLayouts = require("express-ejs-layouts");
 
 // Controllers
 const baseController = require("./controllers/baseController");
-
-// Routes
 const inventoryRoute = require("./routes/inventoryRoute");
+
+// Utilities
+const utilities = require("./utilities");
 
 const app = express();
 
@@ -21,8 +22,20 @@ app.set("layout", "layouts/layout");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// ===== Static Files (CORRECT) =====
-app.use(express.static(path.join(__dirname, "public")));
+// ===== Static Files =====
+app.use(express.static(path.join(__dirname, "public"))); // serve public folder
+
+// ===== Global Middleware for nav =====
+app.use(async (req, res, next) => {
+  try {
+    res.locals.nav = await utilities.getNav();
+    next();
+  } catch (err) {
+    console.error("Error building nav:", err);
+    res.locals.nav = "<ul><li><a href='/'>Home</a></li></ul>";
+    next();
+  }
+});
 
 // ===== Routes =====
 app.get("/", baseController.buildHome);

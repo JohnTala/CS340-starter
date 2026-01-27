@@ -343,9 +343,198 @@ VALUES
     ('Truck'),    -- ID 4
     ('Sedan');    -- ID 5
 
--- =========================
--- Populate table: inventory
--- =========================
+-- -- =========================
+-- -- Populate table: inventory
+-- -- =========================
+-- INSERT INTO public.inventory (
+--     inv_make,
+--     inv_model,
+--     inv_year,
+--     inv_description,
+--     inv_image,
+--     inv_thumbnail,
+--     inv_price,
+--     inv_miles,
+--     inv_color,
+--     classification_id
+-- )
+-- VALUES
+-- (
+--     'Chevy',
+--     'Camaro',
+--     '2018',
+--     'If you want to look cool, this is the car you need! Great performance at an affordable price.',
+--     '/images/vehicles/camaro.jpg',
+--     '/images/vehicles/camaro-tn.jpg',
+--     25000,
+--     101222,
+--     'Silver',
+--     2
+-- ),
+-- (
+--     'Batmobile',
+--     'Custom',
+--     '2007',
+--     'Ever want to be a superhero? The Batmobile allows bike mode for easy traffic navigation.',
+--     '/images/vehicles/batmobile.jpg',
+--     '/images/vehicles/batmobile-tn.jpg',
+--     65000,
+--     29887,
+--     'Black',
+--     1
+-- ),
+-- (
+--     'FBI',
+--     'Surveillance Van',
+--     '2016',
+--     'Perfect for police show fans. Comes with surveillance equipment for an extra fee.',
+--     '/images/vehicles/survan.jpg',
+--     '/images/vehicles/survan-tn.jpg',
+--     20000,
+--     19851,
+--     'Brown',
+--     1
+-- ),
+-- (
+--     'Dog',
+--     'Car',
+--     '1997',
+--     'Straight from the 90s, this original Dog Car comes complete with fluffy ears.',
+--     '/images/vehicles/dog-car.jpg',
+--     '/images/vehicles/dog-car-tn.jpg',
+--     35000,
+--     71632,
+--     'White',
+--     1
+-- ),
+-- (
+--     'Jeep',
+--     'Wrangler',
+--     '2019',
+--     'Compact with enough power for everyday driving and offroading adventures.',
+--     '/images/vehicles/wrangler.jpg',
+--     '/images/vehicles/wrangler-tn.jpg',
+--     28045,
+--     41205,
+--     'Yellow',
+--     3
+-- ),
+-- (
+--     'Lamborghini',
+--     'Adventador',
+--     '2016',
+--     'V-12 engine packs a punch. Drive sporty and obey all traffic laws!',
+--     '/images/vehicles/adventador.jpg',
+--     '/images/vehicles/adventador-tn.jpg',
+--     417650,
+--     71003,
+--     'Blue',
+--     2
+-- ),
+-- (
+--     'Aerocar International',
+--     'Aerocar',
+--     '1963',
+--     'Converts into an airplane! Only 6 ever made. Get it while it lasts.',
+--     '/images/vehicles/aerocar.jpg',
+--     '/images/vehicles/aerocar-tn.jpg',
+--     700000,
+--     18956,
+--     'Red',
+--     1
+-- ),
+-- (
+--     'Monster',
+--     'Truck',
+--     '1995',
+--     'A fun truck with 60-inch tires for extreme traction and offroad fun.',
+--     '/images/vehicles/monster-truck.jpg',
+--     '/images/vehicles/monster-truck-tn.jpg',
+--     150000,
+--     3998,
+--     'Purple',
+--     1
+-- ),
+-- (
+--     'Cadillac',
+--     'Escalade',
+--     'Luxurious inside and out. Perfect for any occasion.',
+--     '/images/vehicles/escalade.jpg',
+--     '/images/vehicles/escalade-tn.jpg',
+--     75195,
+--     41958,
+--     'Black',
+--     4
+-- ),
+-- (
+--     'GM',
+--     'Hummer',
+--     '2016',
+--     'Small interiors with power to tackle any muddy or rocky terrain.',
+--     '/images/vehicles/hummer.jpg',
+--     '/images/vehicles/hummer-tn.jpg',
+--     58800,
+--     56564,
+--     'Yellow',
+--     4
+-- ),
+-- (
+--     'Mechanic',
+--     'Special',
+--     '1964 classic, runs as good as new with a little TLC.',
+--     '/images/vehicles/mechanic.jpg',
+--     '/images/vehicles/mechanic-tn.jpg',
+--     100,
+--     200125,
+--     'Rust',
+--     5
+-- ),
+-- (
+--     'Ford',
+--     'Model T',
+--     'The first production car. Tricky to drive, available only in black.',
+--     '/images/vehicles/model-t.jpg',
+--     '/images/vehicles/model-t-tn.jpg',
+--     30000,
+--     26357,
+--     'Black',
+--     5
+-- ),
+-- (
+--     'Mystery',
+--     'Machine',
+--     '4-wheel drive van used by Scooby and the gang to solve mysteries.',
+--     '/images/vehicles/mystery-van.jpg',
+--     '/images/vehicles/mystery-van-tn.jpg',
+--     10000,
+--     128564,
+--     'Green',
+--     1
+-- ),
+-- (
+--     'Spartan',
+--     'Fire Truck',
+--     'Be prepared for emergencies with this fully equipped fire truck.',
+--     '/images/vehicles/fire-truck.jpg',
+--     '/images/vehicles/fire-truck-tn.jpg',
+--     50000,
+--     38522,
+--     'Red',
+--     4
+-- ),
+-- (
+--     'Ford',
+--     'Crown Victoria',
+--     'After fleet upgrades, now available to the public. Comes with siren.',
+--     '/images/vehicles/crwn-vic.jpg',
+--     '/images/vehicles/crwn-vic-tn.jpg',
+--     10000,
+--     108247,
+--     'White',
+--     5
+-- );
+
+
 INSERT INTO public.inventory (
     inv_make,
     inv_model,
@@ -458,6 +647,7 @@ VALUES
 (
     'Cadillac',
     'Escalade',
+    '2020',
     'Luxurious inside and out. Perfect for any occasion.',
     '/images/vehicles/escalade.jpg',
     '/images/vehicles/escalade-tn.jpg',
@@ -481,6 +671,7 @@ VALUES
 (
     'Mechanic',
     'Special',
+    '1964',
     '1964 classic, runs as good as new with a little TLC.',
     '/images/vehicles/mechanic.jpg',
     '/images/vehicles/mechanic-tn.jpg',
@@ -492,6 +683,7 @@ VALUES
 (
     'Ford',
     'Model T',
+    '1927',
     'The first production car. Tricky to drive, available only in black.',
     '/images/vehicles/model-t.jpg',
     '/images/vehicles/model-t-tn.jpg',
@@ -503,6 +695,7 @@ VALUES
 (
     'Mystery',
     'Machine',
+    '1970',
     '4-wheel drive van used by Scooby and the gang to solve mysteries.',
     '/images/vehicles/mystery-van.jpg',
     '/images/vehicles/mystery-van-tn.jpg',
@@ -514,6 +707,7 @@ VALUES
 (
     'Spartan',
     'Fire Truck',
+    '2018',
     'Be prepared for emergencies with this fully equipped fire truck.',
     '/images/vehicles/fire-truck.jpg',
     '/images/vehicles/fire-truck-tn.jpg',
@@ -525,6 +719,7 @@ VALUES
 (
     'Ford',
     'Crown Victoria',
+    '2011',
     'After fleet upgrades, now available to the public. Comes with siren.',
     '/images/vehicles/crwn-vic.jpg',
     '/images/vehicles/crwn-vic-tn.jpg',

@@ -1,49 +1,48 @@
-const invModel = require("../models/inventory-model");
+const invModel = require("../models/inventory-models");
 const utilities = require("../utilities/");
 
 const invCont = {};
 
-/* Inventory by classification */
-invCont.buildByClassificationId = async function (req, res, next) {
+/* Vehicles by classification */
+invCont.buildByClassificationId = async function (req, res) {
   try {
-    const classification_id = req.params.classificationId;
-    const data = await invModel.getInventoryByClassificationId(classification_id);
-    const grid = await utilities.buildClassificationGrid(data);
+    const classificationId = req.params.classificationId;
+    const vehicles = await invModel.getInventoryByClassificationId(classificationId);
     const nav = await utilities.getNav();
-    const className = data[0]?.classification_name || "Vehicles";
+    const className = vehicles[0]?.classification_name || "Vehicles";
 
-    res.render("./inventory/classification", {
+    res.render("inventory/classification", {
       title: `${className} Vehicles`,
       nav,
-      grid,
+      vehicles, // pass array to EJS
     });
-  } catch (error) {
-    console.error("buildByClassificationId error: ", error);
+  } catch (err) {
+    console.error("buildByClassificationId error:", err);
     const nav = await utilities.getNav();
-    res.render("./inventory/classification", {
+    res.render("inventory/classification", {
       title: "Vehicles",
       nav,
-      grid: '<p class="notice">Sorry, we could not load this classification.</p>'
+      vehicles: [], // empty array triggers notice
     });
   }
 };
 
 /* Single vehicle detail */
-invCont.buildVehicleDetail = async function (req, res, next) {
+invCont.buildVehicleDetail = async function (req, res) {
   try {
-    const inv_id = req.params.invId;
-    const vehicle = await invModel.getInventoryById(inv_id);
+    const invId = req.params.invId;
+    const vehicle = await invModel.getInventoryById(invId);
     const nav = await utilities.getNav();
 
-    res.render("./inventory/detail", {
+    res.render("inventory/detail", {
       title: vehicle ? `${vehicle.inv_make} ${vehicle.inv_model}` : "Vehicle Not Found",
       nav,
       vehicle,
     });
-  } catch (error) {
-    console.error("buildVehicleDetail error: ", error);
+  } catch (err) {
+    console.error("buildVehicleDetail error:", err);
     const nav = await utilities.getNav();
-    res.render("./inventory/detail", {
+    res.render("inventory/detail", {
       title: "Error Loading Vehicle",
       nav,
       vehicle: null,

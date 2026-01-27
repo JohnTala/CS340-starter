@@ -1,7 +1,9 @@
 const invModel = require("../models/inventory-model");
 const Util = {};
 
-/* Build dynamic nav */
+/* ************************
+ * Constructs the nav HTML unordered list
+ ************************** */
 Util.getNav = async function () {
   const data = await invModel.getClassifications();
   let list = "<ul>";
@@ -17,53 +19,36 @@ Util.getNav = async function () {
   return list;
 };
 
-/* Build classification grid */
-Util.buildClassificationGrid = async function(data) {
-  if (!data.length) return '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+/* ************************
+ * Build the classification view HTML
+ ************************** */
+Util.buildClassificationGrid = async function (data) {
+  let grid = "";
+  if (data.length > 0) {
+    grid = '<ul id="inv-display">';
+    data.forEach((vehicle) => {
+      grid += "<li>";
 
-  let grid = '<ul id="inv-display">';
-  data.forEach(vehicle => {
-    const thumbnailPath = vehicle.inv_thumbnail.startsWith("/images/")
-      ? vehicle.inv_thumbnail
-      : `/images/${vehicle.inv_thumbnail.replace(/^\/+/, "")}`;
+      // Use DB thumbnail path directly (no /assets prefix)
+      grid += `<a href="/inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
+                 <img src="${vehicle.inv_thumbnail}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors">
+               </a>`;
 
-    grid += '<li>';
-    grid += `<a href="/inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
-               <img src="${thumbnailPath}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
-             </a>`;
-    grid += '<div class="namePrice"><hr />';
-    grid += `<h2><a href="/inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
-               ${vehicle.inv_make} ${vehicle.inv_model}
-             </a></h2>`;
-    grid += `<span>$${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</span>`;
-    grid += '</div></li>';
-  });
-  grid += '</ul>';
+      grid += '<div class="namePrice">';
+      grid += "<hr />";
+      grid += `<h2><a href="/inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
+                 ${vehicle.inv_make} ${vehicle.inv_model}
+               </a></h2>`;
+
+      grid += `<span>$${new Intl.NumberFormat("en-US").format(vehicle.inv_price)}</span>`;
+      grid += "</div>";
+      grid += "</li>";
+    });
+    grid += "</ul>";
+  } else {
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+  }
   return grid;
-};
-
-/* Build single vehicle detail */
-Util.buildVehicleDetail = function(vehicle) {
-  if (!vehicle) return '<p class="notice">Vehicle not found.</p>';
-
-  const imagePath = vehicle.inv_image.startsWith("/images/")
-    ? vehicle.inv_image
-    : `/images/${vehicle.inv_image.replace(/^\/+/, "")}`;
-
-  return `
-    <div class="vehicle-detail">
-      <div class="vehicle-image">
-        <img src="${imagePath}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
-      </div>
-      <div class="vehicle-info">
-        <p><strong>Year:</strong> ${vehicle.inv_year}</p>
-        <p><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
-        <p><strong>Miles:</strong> ${vehicle.inv_miles.toLocaleString()}</p>
-        <p><strong>Color:</strong> ${vehicle.inv_color}</p>
-        <p><strong>Description:</strong> ${vehicle.inv_description}</p>
-      </div>
-    </div>
-  `;
 };
 
 module.exports = Util;

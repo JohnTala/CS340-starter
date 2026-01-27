@@ -2,25 +2,20 @@
 <html lang="en">
   <head>
     <%- include("../partials/head") %>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
     <div id="wrapper">
       <%- include("../partials/header") %>
-
       <nav class="navbar">
         <div class="logo"><a href="/">CSE Motors</a></div>
         <div id="nav-links">
           <%- nav %>
         </div>
       </nav>
-
       <main>
         <%- body %>
       </main>
-
       <%- include("../partials/footer") %>
     </div>
   </body>
