@@ -1,20 +1,34 @@
 const invModel = require("../models/inventory-model");
+
 const Util = {};
 
 /* ************************
  * Constructs the nav HTML unordered list
+ * Safe: catches DB errors and ensures an array
  ************************** */
 Util.getNav = async function () {
-  const data = await invModel.getClassifications();
+  let data = [];
+  try {
+    data = await invModel.getClassifications();
+  } catch (err) {
+    console.error("getNav DB error:", err);
+  }
+
   let list = "<ul>";
   list += '<li><a href="/" title="Home page">Home</a></li>';
-  data.forEach((row) => {
-    list += `<li>
-      <a href="/inv/type/${row.classification_id}" title="See our inventory of ${row.classification_name} vehicles">
-        ${row.classification_name}
-      </a>
-    </li>`;
-  });
+
+  if (Array.isArray(data) && data.length > 0) {
+    data.forEach((row) => {
+      list += `<li>
+        <a href="/inv/type/${row.classification_id}" title="See our inventory of ${row.classification_name} vehicles">
+          ${row.classification_name}
+        </a>
+      </li>`;
+    });
+  } else {
+    console.log("No classifications found for nav.");
+  }
+
   list += "</ul>";
   return list;
 };
@@ -28,14 +42,14 @@ Util.buildClassificationGrid = function (vehicles = []) {
   }
 
   // Filter vehicles with images
-  const filteredVehicles = vehicles.filter(v => v.inv_image);
+  const filteredVehicles = vehicles.filter((v) => v.inv_image);
 
   if (filteredVehicles.length === 0) {
     return '<p class="notice">No vehicles with images available.</p>';
   }
 
   let grid = '<ul id="inv-display">';
-  filteredVehicles.forEach(vehicle => {
+  filteredVehicles.forEach((vehicle) => {
     grid += "<li>";
     grid += `<a href="/inv/detail/${vehicle.inv_id}" title="View ${vehicle.inv_make} ${vehicle.inv_model} details">
                <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
