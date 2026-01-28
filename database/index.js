@@ -1,16 +1,32 @@
-// database/index.js
 const { Pool } = require("pg");
 require("dotenv").config();
 
-// Use SSL for Render (production) and also for local dev connecting to Render
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === "production" || process.env.NODE_ENV === "development"
-       ? { rejectUnauthorized: false }
-       : false,
-});
+let pool;
 
-// Export a query function to use throughout your app
+// Use different SSL settings for production (Render) vs development (local)
+if (process.env.NODE_ENV === "production") {
+  // Render/Postgres connection requires SSL with rejectUnauthorized: false
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+} else {
+  // Local development
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: false, // no SSL locally
+  });
+}
+
 module.exports = {
-  query: (text, params) => pool.query(text, params),
+  query: async (text, params) => {
+    try {
+      const res = await pool.query(text, params);
+      console.log("Executed query:", text);
+      return res;
+    } catch (err) {
+      console.error("Database query error:", err);
+      throw err;
+    }
+  },
 };
