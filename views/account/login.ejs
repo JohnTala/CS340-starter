@@ -1,0 +1,45 @@
+<div class="form-container login-form">
+  <form method="post" action="/account/login">
+    <h1>Login</h1>
+
+    <%- messages() %>
+
+    <label for="account_email">Email</label>
+    <input
+      type="email"
+      id="account_email"
+      name="account_email"
+      required
+      autocomplete="email"
+    >
+
+    <label for="account_password">Password</label>
+    <input
+      type="password"
+      id="account_password"
+      name="account_password"
+      required
+      autocomplete="current-password"
+    >
+
+    <p class="password-requirements">
+      Password must be at least 12 characters, include 1 capital letter, 1 number, and 1 special character
+    </p>
+
+    <label class="show-password">
+      <input type="checkbox" id="togglePassword"> Show password
+    </label>
+
+    <button type="submit">Login</button>
+
+    <p class="signup-link">
+      No account? <a href="/account/register">Sign up</a>
+    </p>
+  </form>
+</div>
+
+<!-- Load the reusable show password script -->
+<script type="module">
+  import { setupShowPassword } from '/js/showPassword.js';
+  setupShowPassword('#togglePassword', '#account_password');
+</script>
