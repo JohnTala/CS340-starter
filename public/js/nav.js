@@ -1,9 +1,6 @@
-// Select hamburger and nav links
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelector('#nav-links ul');
+const hamburger = document.querySelector('.hamburger');
+const navList = document.querySelector('nav ul');
 
-if (hamburger && navLinks) {
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active'); // toggle active class
-  });
-}
+hamburger.addEventListener('click', () => {
+  navList.classList.toggle('show');
+});

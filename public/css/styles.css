@@ -1,4 +1,7 @@
-/* GLOBAL RESET & BASE */
+/* =================================================
+   GLOBAL RESET & BASE
+================================================= */
+
 *,
 *::before,
 *::after {
@@ -18,7 +21,10 @@ body {
   min-height: 100vh;
 }
 
-/* WRAPPER & HEADER */
+/* =================================================
+   WRAPPER & HEADER
+================================================= */
+
 #wrapper {
   background-color: #fff;
   margin: 10px 25px;
@@ -32,6 +38,19 @@ body {
   padding: 10px;
 }
 
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =================================================
+   NAVIGATION (DESKTOP FIRST)
+================================================= */
+
+nav {
+  margin: 0 10px;
+}
+
 nav ul {
   display: flex;
   justify-content: space-around;
@@ -42,151 +61,12 @@ nav ul {
   font-weight: 600;
 }
 
-nav ul li a,
-header a {
+nav ul li a {
   text-decoration: none;
   color: inherit;
 }
 
-/* IMAGE RESET */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* FEATURED VEHICLE */
-#featured-vehicles {
-  padding: 10px;
-}
-
-#featured-vehicles h1 {
-  margin-left: 10px;
-}
-
-/* VEHICLE CARD */
-.vehicle-card {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-#delorean {
-  width: 100%;
-}
-
-/* OVERLAY */
-.own_today {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  width: 240px;
-  height: 250px;
-  padding: 15px;
-  background-color: rgba(255, 255, 255, 0.75);
-  border-left: 6px solid #00bcd4;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: start;
-  justify-content: space-between;
-}
-
-.car-info span {
-  display: block;
-  color: #00bcd4;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.car-info span:nth-child(1) {
-  font-size: 1.3rem;
-  font-weight: 800;
-}
-
-.car-info span {
-  font-weight: 600;
-  font-size: larger;
-}
-
-.own_today img {
-  width: 150px;
-}
-
-/* UPGRADES + REVIEWS GRID */
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 30px;
-  align-items: start;
-}
-
-/* UPGRADES SECTION */
-.upgrades h2 {
-  margin-left: 10px;
-  margin-bottom: 40px;
-}
-
-.delorean-parts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-left: 10px;
-}
-
-/* Individual upgrade */
-.upgrade-item {
-  width: 190px;
-  text-align: center;
-}
-
-/* Blue image box */
-.upgrade-box {
-  background-color: #00bcd4;
-  height: 110px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.upgrade-box img {
-  max-height: 50px;
-}
-
-/* Caption BELOW box */
-.upgrade-item figcaption {
-  margin-top: 6px;
-}
-
-.upgrade-item figcaption a {
-  color: #1e4bd1;
-  font-weight: bold;
-  text-decoration: underline;
-  font-size: 0.9rem;
-}
-
-/* REVIEWS SECTION */
-.reviews h2 {
-  margin-bottom: 40px;
-}
-
-.review-list {
-  padding-left: 10px;
-}
-
-.review-list li {
-  margin-bottom: 10px;
-}
-
-footer p {
-  margin-left: 10px;
-  font-weight: bolder;
-}
-
-/* =========================
-   DYNAMIC NAVIGATION & INVENTORY GRID
-========================= */
+/* Dynamic navbar wrapper */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -220,40 +100,168 @@ footer p {
   background-color: #ff6f61;
 }
 
-/* INVENTORY GRID */
+/* =================================================
+   IMAGE RESET
+================================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =================================================
+   FEATURED VEHICLE
+================================================= */
+
+#featured-vehicles {
+  padding: 10px;
+}
+
+#featured-vehicles h1 {
+  margin-left: 10px;
+}
+
+.vehicle-card {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#delorean {
+  width: 100%;
+}
+
+/* Overlay */
+.own_today {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 240px;
+  height: 250px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-left: 6px solid #00bcd4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.car-info span {
+  display: block;
+  color: #00bcd4;
+  font-weight: 600;
+}
+
+.car-info span:first-child {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.own_today img {
+  width: 150px;
+}
+
+/* =================================================
+   UPGRADES + REVIEWS GRID
+================================================= */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* Upgrades */
+.upgrades h2 {
+  margin-left: 10px;
+  margin-bottom: 40px;
+}
+
+.delorean-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-left: 10px;
+}
+
+.upgrade-item {
+  width: 190px;
+  text-align: center;
+}
+
+.upgrade-box {
+  background-color: #00bcd4;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrade-box img {
+  max-height: 50px;
+}
+
+.upgrade-item figcaption {
+  margin-top: 6px;
+}
+
+.upgrade-item figcaption a {
+  color: #1e4bd1;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+/* Reviews */
+.reviews h2 {
+  margin-bottom: 40px;
+}
+
+.review-list {
+  padding-left: 10px;
+}
+
+.review-list li {
+  margin-bottom: 10px;
+}
+
+/* =================================================
+   INVENTORY GRID
+================================================= */
+
 #inv-display {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px;
-  margin: 0 auto;
   max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 #inv-display li {
+  list-style: none;
+  max-width: 400px;
+  margin: 0 auto;
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  list-style: none;
 }
 
 #inv-display li:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
 }
 
-#inv-display li img {
+#inv-display img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  display: block;
-  transition: transform 0.3s;
-}
-
-#inv-display li:hover img {
-  transform: scale(1.05);
 }
 
 .namePrice {
@@ -262,9 +270,7 @@ footer p {
 }
 
 .namePrice h2 {
-  margin: 10px 0 5px;
   font-size: 1.2rem;
-  color: #333;
 }
 
 .namePrice h2 a {
@@ -272,109 +278,15 @@ footer p {
   color: #333;
 }
 
-.namePrice h2 a:hover {
-  color: #ff6f61;
-}
-
 .namePrice span {
-  display: block;
   font-size: 1.1rem;
   font-weight: 600;
   color: #ff6f61;
 }
 
-.notice {
-  padding: 20px;
-  text-align: center;
-  background-color: #ffecec;
-  color: #d9534f;
-  border-radius: 8px;
-  font-weight: 500;
-}
-
-/* =========================
-   RESPONSIVE INVENTORY GRID
-========================= */
-@media (max-width: 768px) {
-  #inv-display {
-    grid-template-columns: 1fr;
-    padding: 15px;
-  }
-
-  .namePrice h2 {
-    font-size: 1rem;
-  }
-
-  .namePrice span {
-    font-size: 1rem;
-  }
-}
-
-/* =========================
-   INVENTORY CLASSIFICATION GRID (UPDATED)
-========================= */
-
-.inventory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  padding: 25px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.inventory-grid .vehicle-card {
-  background-color: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  text-align: center;
-}
-
-.inventory-grid .vehicle-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-}
-
-.inventory-grid .vehicle-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-
-.inventory-grid .vehicle-card h2 {
-  margin: 12px 0 5px;
-  font-size: 1.2rem;
-}
-
-.inventory-grid .vehicle-card h2 a {
-  text-decoration: none;
-  color: #333;
-}
-
-.inventory-grid .vehicle-card h2 a:hover {
-  color: #ff6f61;
-}
-
-.inventory-grid .vehicle-card span {
-  display: block;
-  font-size: 1.15rem;
-  font-weight: bold;
-  color: #ff6f61;
-  margin-bottom: 5px;
-}
-
-.inventory-grid .vehicle-card p {
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  color: #555;
-}
-
-/* =========================
+/* =================================================
    VEHICLE DETAIL PAGE
-========================= */
+================================================= */
 
 .vehicle-detail {
   display: grid;
@@ -386,9 +298,8 @@ footer p {
 }
 
 .vehicle-image img {
-  width: 100%;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 
 .vehicle-info p {
@@ -396,31 +307,27 @@ footer p {
   font-size: 1.05rem;
 }
 
-.vehicle-info strong {
-  color: #333;
+/* =================================================
+   FORMS
+================================================= */
+
+.form-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* =========================
-   RESPONSIVE ADJUSTMENTS
-========================= */
-
-@media (max-width: 768px) {
-  .inventory-grid {
-    grid-template-columns: 1fr;
-    padding: 15px;
-  }
-
-  .vehicle-detail {
-    grid-template-columns: 1fr;
-    padding: 20px;
-  }
+.form-container input,
+.form-container button {
+  width: 100%;
 }
 
-
-
-/* =========================
-   404 / ERROR PAGE STYLES
-========================= */
+/* =================================================
+   ERROR PAGE
+================================================= */
 
 .error-page {
   min-height: 80vh;
@@ -430,332 +337,115 @@ footer p {
   justify-content: center;
 }
 
-/* Face */
-.error-page .face {
-  width: 300px;
-  height: 300px;
-  border: 4px solid #383A41;
-  border-radius: 10px;
-  background-color: #FFFFFF;
-  margin: 100px auto 0;
-  position: relative;
+/* =================================================
+   RESPONSIVE BREAKPOINTS
+================================================= */
+
+@media (max-width: 768px) {
+  #wrapper {
+    margin: 8px;
+  }
+
+  #top-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vehicle-detail {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .own_today {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 6px solid #00bcd4;
+    margin-top: 15px;
+  }
 }
 
-/* Band */
-.error-page .band {
-  width: 350px;
-  height: 27px;
-  border: 4px solid #383A41;
-  border-radius: 5px;
-  margin-left: -25px;
-  margin-top: 50px;
-  position: relative;
-}
+@media (max-width: 480px) {
+  .upgrade-item {
+    width: 100%;
+  }
 
-.error-page .band .red {
-  height: 33.33%;
-  background-color: #EB6D6D;
-}
+  .namePrice h2 {
+    font-size: 1rem;
+  }
 
-.error-page .band .white {
-  height: 33.33%;
-  background-color: #FFFFFF;
-}
-
-.error-page .band .blue {
-  height: 33.33%;
-  background-color: #5E7FDC;
-}
-
-.error-page .band::before {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 27px;
-  background-color: rgba(255, 255, 255, 0.3);
-  left: 0;
-}
-
-.error-page .band::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 27px;
-  background-color: rgba(56, 58, 65, 0.3);
-  right: 0;
-  top: 0;
-}
-
-/* Eyes */
-.error-page .eyes {
-  width: 128px;
-  margin: 40px auto 0;
-}
-
-.error-page .eyes::before,
-.error-page .eyes::after {
-  content: "";
-  display: inline-block;
-  width: 30px;
-  height: 15px;
-  border: 7px solid #383A41;
-  border-bottom: 0;
-  border-top-left-radius: 22px;
-  border-top-right-radius: 22px;
-}
-
-.error-page .eyes::before {
-  margin-right: 20px;
-}
-
-.error-page .eyes::after {
-  margin-left: 20px;
-}
-
-/* Dimples */
-.error-page .dimples {
-  width: 180px;
-  margin: 15px auto 0;
-}
-
-.error-page .dimples::before,
-.error-page .dimples::after {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: rgba(235, 109, 109, 0.4);
-}
-
-.error-page .dimples::before {
-  margin-right: 80px;
-}
-
-.error-page .dimples::after {
-  margin-left: 80px;
-}
-
-/* Mouth */
-.error-page .mouth {
-  width: 40px;
-  height: 5px;
-  border-radius: 5px;
-  background-color: #383A41;
-  margin: 25px auto 0;
-}
-
-/* Title */
-.error-page h1 {
-  font-weight: 800;
-  color: #383A41;
-  text-align: center;
-  font-size: 2.5rem;
-  margin-top: 20px;
-}
-
-/* Button */
-.error-page .btn {
-  padding: 20px;
-  background-color: #5E7FDC;
-  color: #FFFFFF;
-  width: 320px;
-  margin: 80px auto 50px;
-  text-align: center;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.error-page .btn:hover {
-  background-color: rgba(94, 127, 220, 0.8);
-}
-
-/* Responsive */
-@media (max-width: 400px) {
   .error-page .face {
-    margin-top: 40px;
-    transform: scale(0.8);
-  }
-
-  .error-page h1 {
-    font-size: 2rem;
-    padding: 0 20px;
-  }
-
-  .error-page .btn {
-    width: 200px;
-    margin-top: 60px;
+    transform: scale(0.85);
   }
 }
 
 /* =================================================
-   FIX: Prevent inventory cards/images from stretching
-   when only 1–2 vehicles exist & center the grid
+   LOGIN & SIGNUP FORM FIX (ENSURE STYLING APPLIES)
 ================================================= */
 
-#inv-display {
-  justify-content: center;
-}
-
-#inv-display li {
-  max-width: 400px;   
+.form-container,
+.form-container form {
+  display: block;
   width: 100%;
-  margin: 0 auto;
-}
-
-/* ------------------ */
-/* Common Form Styles */
-/* ------------------ */
-.form-container {
-  max-width: 400px;
-  margin: 3rem auto;
-  padding: 2rem;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  font-family: Arial, sans-serif;
 }
 
 .form-container h1 {
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #333;
-  font-size: 1.8rem;
 }
 
 .form-container label {
   display: block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
   font-weight: bold;
-  color: #555;
 }
 
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="password"] {
+.form-container input {
   width: 100%;
   padding: 0.6rem;
   margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 1rem;
-  box-sizing: border-box;
 }
 
-.form-container input:focus {
-  outline: none;
-  border-color: #007BFF;
-  box-shadow: 0 0 5px rgba(0,123,255,0.3);
-}
-
-.form-container .show-password {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.form-container .show-password input[type="checkbox"] {
-  margin-right: 0.5rem;
-}
-
-.form-container button[type="submit"] {
+.form-container button {
   width: 100%;
   padding: 0.75rem;
   background-color: #007BFF;
   color: #fff;
-  font-size: 1.1rem;
   font-weight: bold;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 
-.form-container button[type="submit"]:hover {
+.form-container button:hover {
   background-color: #0056b3;
 }
 
-.form-container .login-link,
-.form-container .signup-link {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-}
-
-.form-container .login-link a,
-.form-container .signup-link a {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-.form-container .login-link a:hover,
-.form-container .signup-link a:hover {
-  text-decoration: underline;
-}
-
 /* Flash messages */
-.form-container .flash-error {
-  color: #d9534f;
+.flash-error {
   background-color: #f8d7da;
+  color: #d9534f;
   padding: 0.5rem;
-  margin-bottom: 1rem;
   border-radius: 6px;
-}
-
-.form-container .flash-success {
-  color: #155724;
-  background-color: #d4edda;
-  padding: 0.5rem;
   margin-bottom: 1rem;
-  border-radius: 6px;
 }
 
-/* Password requirements note */
-.form-container .password-requirements {
-  font-size: 0.85rem;
-  color: #777;
-  margin-top: 0.3rem;
-}
-
-/* ------------------ */
-/* Responsive Design   */
-/* ------------------ */
+/* Mobile spacing */
 @media (max-width: 480px) {
   .form-container {
     margin: 2rem 1rem;
     padding: 1.5rem;
-  }
-
-  .form-container h1 {
-    font-size: 1.5rem;
-  }
-
-  .form-container input[type="text"],
-  .form-container input[type="email"],
-  .form-container input[type="password"] {
-    padding: 0.5rem;
-    font-size: 0.95rem;
-  }
-
-  .form-container button[type="submit"] {
-    padding: 0.6rem;
-    font-size: 1rem;
-  }
-
-  .form-container .show-password {
-    font-size: 0.85rem;
-  }
-
-  .form-container .login-link,
-  .form-container .signup-link {
-    font-size: 0.85rem;
-  }
-
-  .form-container .password-requirements {
-    font-size: 0.8rem;
   }
 }
