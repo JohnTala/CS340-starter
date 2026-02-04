@@ -6,19 +6,24 @@
   </head>
   <body>
     <div id="wrapper">
+      <!-- Header content (logo, etc.) -->
       <%- include("../partials/header") %>
+
+      <!-- Single dynamic navbar -->
       <nav class="navbar">
         <div class="logo"><a href="/">CSE Motors</a></div>
         <div id="nav-links">
           <%- nav %>
         </div>
       </nav>
+
+      <!-- Page-specific content -->
       <main>
         <%- body %>
       </main>
+
       <%- include("../partials/footer") %>
     </div>
     <script src="/js/nav.js" defer></script>
-
   </body>
 </html>

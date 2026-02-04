@@ -1,27 +1,49 @@
+<h1><%= title %></h1>
+
+<!-- Flash Messages -->
+<% if (messages().length > 0) { %>
+  <% messages().forEach(msg => { %>
+    <% if (msg.type === 'success') { %>
+      <div class="flash-success"><%= msg.message %></div>
+    <% } else if (msg.type === 'error') { %>
+      <div class="flash-error"><%= msg.message %></div>
+    <% } %>
+  <% }) %>
+<% } %>
+
+<!-- Validation Errors -->
+<% if (errors && errors.array().length > 0) { %>
+  <ul class="error-list">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <div class="form-container register-form">
-  <form method="post" action="/account/register">
-    <h1>Register</h1>
+  <form method="post" action="/account/register" novalidate>
 
-    <%- messages() %>
-
+    <!-- First Name -->
     <label for="account_firstname">First Name</label>
     <input
       type="text"
       id="account_firstname"
       name="account_firstname"
       required
-      autocomplete="given-name"
+      value="<%= locals.account_firstname || '' %>"
     >
 
+    <!-- Last Name -->
     <label for="account_lastname">Last Name</label>
     <input
       type="text"
       id="account_lastname"
       name="account_lastname"
       required
-      autocomplete="family-name"
+      value="<%= locals.account_lastname || '' %>"
     >
 
+    <!-- Email -->
     <label for="account_email">Email</label>
     <input
       type="email"
@@ -29,8 +51,10 @@
       name="account_email"
       required
       autocomplete="email"
+      value="<%= locals.account_email || '' %>"
     >
 
+    <!-- Password -->
     <label for="account_password">Password</label>
     <input
       type="password"
@@ -38,23 +62,26 @@
       name="account_password"
       required
       autocomplete="new-password"
-      pattern="(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{12,}"
-      title="Password must be at least 12 characters, include 1 capital letter, 1 number and 1 special character"
     >
 
+    <!-- Password Requirements -->
+    <p class="password-requirements">
+      Password must be at least 12 characters, include 1 capital letter, 1 number, and 1 special character
+    </p>
+
+    <!-- Show/Hide Password -->
     <label class="show-password">
-      <input type="checkbox" id="togglePassword"> Show password
+      <input type="button" id="togglePassword" value="Show password">
     </label>
 
     <button type="submit">Register</button>
 
-    <p class="login-link">
-      Already have an account? <a href="/account/login">Login here</a>
+    <p class="signup-link">
+      Already have an account? <a href="/account/login">Login</a>
     </p>
   </form>
 </div>
 
-<!-- Load the reusable show password script -->
 <script type="module">
   import { setupShowPassword } from '/js/showPassword.js';
   setupShowPassword('#togglePassword', '#account_password');

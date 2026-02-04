@@ -1,4 +1,5 @@
 <div class="error-page">
+  <!-- Animated error face -->
   <div class="face">
     <div class="band">
       <div class="red"></div>
@@ -10,9 +11,13 @@
     <div class="mouth"></div>
   </div>
 
-  <h1><%= title %></h1>
+  <!-- Error title -->
+  <h1>Oops! Something went wrong!</h1>
+  <h2><%= title %></h2>
 
+  <!-- Error message from server -->
+  <p><%- message %></p>
+
+  <!-- Return home button -->
   <div class="btn" onclick="location.href='/'">Return to Home</div>
-
-  <%- message %>
 </div>

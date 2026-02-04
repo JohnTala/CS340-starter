@@ -1,9 +1,29 @@
+<h1><%= title %></h1>
+
+<!-- Flash Messages -->
+<% if (success_messages.length > 0) { %>
+  <% success_messages.forEach(msg => { %>
+    <div class="flash-success"><%= msg %></div>
+  <% }) %>
+<% } %>
+
+<% if (error_messages.length > 0) { %>
+  <% error_messages.forEach(msg => { %>
+    <div class="flash-error"><%= msg %></div>
+  <% }) %>
+<% } %>
+
+<!-- Validation Errors -->
+<% if (errors && errors.array().length > 0) { %>
+  <ul class="error-list">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <div class="form-container login-form">
-  <form method="post" action="/account/login">
-    <h1>Login</h1>
-
-    <%- messages() %>
-
+  <form method="post" action="/account/login" novalidate>
     <label for="account_email">Email</label>
     <input
       type="email"
@@ -11,6 +31,7 @@
       name="account_email"
       required
       autocomplete="email"
+      value="<%= account_email || '' %>"
     >
 
     <label for="account_password">Password</label>
@@ -22,12 +43,8 @@
       autocomplete="current-password"
     >
 
-    <p class="password-requirements">
-      Password must be at least 12 characters, include 1 capital letter, 1 number, and 1 special character
-    </p>
-
     <label class="show-password">
-      <input type="checkbox" id="togglePassword"> Show password
+      <input type="button" id="togglePassword" value="Show password">
     </label>
 
     <button type="submit">Login</button>
@@ -38,7 +55,7 @@
   </form>
 </div>
 
-<!-- Load the reusable show password script -->
+<!-- Show/Hide Password Script -->
 <script type="module">
   import { setupShowPassword } from '/js/showPassword.js';
   setupShowPassword('#togglePassword', '#account_password');

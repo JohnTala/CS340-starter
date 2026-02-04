@@ -1,0 +1,72 @@
+<main>
+  <h1><%= title %></h1>
+
+  <% if (message) { %>
+    <p class="flash-success"><%= message %></p>
+  <% } %>
+
+  <!-- ============================
+       Action Buttons
+  ============================ -->
+  <div class="action-buttons">
+    <a href="/inv/add-classification" id="add-classification-link">Add New Classification</a>
+    <a href="/inv/add-inventory" id="add-vehicle-link">Add New Vehicle</a>
+  </div>
+
+  <!-- ============================
+       Vehicle Classification Dashboard
+  ============================ -->
+  <section id="classification-dashboard">
+    <h2>Vehicle Classifications</h2>
+    <ul id="classification-cards">
+      <% if (Array.isArray(classifications) && classifications.length > 0) { %>
+        <% classifications.forEach(classification => { %>
+          <li class="classification-card">
+            <a href="/inv/type/<%= classification.classification_id %>">
+              <%= classification.classification_name %>
+            </a>
+          </li>
+        <% }); %>
+      <% } else { %>
+        <li>No classifications available.</li>
+      <% } %>
+    </ul>
+  </section>
+
+  <!-- ============================
+       Recent Vehicles
+  ============================ -->
+  <section id="recent-vehicles">
+    <h2>Recent Vehicles</h2>
+    <% if (Array.isArray(vehicles) && vehicles.length > 0) { %>
+      <ul id="inv-display">
+        <% vehicles.forEach(vehicle => { %>
+          <% 
+            const image = vehicle.inv_image && vehicle.inv_image.length
+              ? vehicle.inv_image
+              : "/images/vehicles/no-image.png";
+
+            const thumbnail = vehicle.inv_thumbnail && vehicle.inv_thumbnail.length
+              ? vehicle.inv_thumbnail
+              : "/images/vehicles/no-image-tn.png";
+          %>
+          <li>
+            <a href="/inv/detail/<%= vehicle.inv_id %>">
+              <img src="<%= image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>">
+            </a>
+            <div class="namePrice">
+              <h2>
+                <a href="/inv/detail/<%= vehicle.inv_id %>">
+                  <%= vehicle.inv_make %> <%= vehicle.inv_model %>
+                </a>
+              </h2>
+              <span>$<%= vehicle.inv_price ? new Intl.NumberFormat("en-US").format(vehicle.inv_price) : "N/A" %></span>
+            </div>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p class="notice">No vehicles available.</p>
+    <% } %>
+  </section>
+</main>

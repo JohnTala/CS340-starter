@@ -1,12 +1,14 @@
 <main>
-  <% if (title) { %>
-    <h1><%= title %></h1>
-  <% } else { 
-    res.redirect('/') 
-  } %>
+  <h1><%= title %></h1>
 
-  <%# messages() %>
+  <% if (message) { %>
+    <p class="flash-success"><%= message %></p>
+  <% } %>
 
-  <!-- Inventory Items Display -->
-  <%- grid %>
+  <!-- Inventory Grid -->
+  <% if (grid) { %>
+    <%- grid %>
+  <% } else { %>
+    <p class="notice">No vehicles available for this classification.</p>
+  <% } %>
 </main>

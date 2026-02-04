@@ -1,11 +1,16 @@
-// showPassword.js
 export function setupShowPassword(toggleSelector, inputSelector) {
-  const togglePassword = document.querySelector(toggleSelector)
-  const passwordInput = document.querySelector(inputSelector)
+  const button = document.querySelector(toggleSelector)
+  const password = document.querySelector(inputSelector)
 
-  if (!togglePassword || !passwordInput) return
+  if (!button || !password) return
 
-  togglePassword.addEventListener('change', function () {
-    passwordInput.type = this.checked ? 'text' : 'password'
+  button.addEventListener('click', function () {
+    if (password.type === 'password') {
+      password.type = 'text'
+      button.value = 'Hide password'
+    } else {
+      password.type = 'password'
+      button.value = 'Show password'
+    }
   })
 }
