@@ -769,10 +769,12 @@ footer a:hover {
   color: #155724;           /* strong green text */
   font-weight: bold;
   padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
+  margin: 0 auto;
   border-radius: 6px;
   text-align: center;
   border: 1px solid #c3e6cb;
+  font-style: italic;
+   max-width: 500px;
 }
 
 /* Error Messages */
@@ -781,10 +783,12 @@ footer a:hover {
   color: #a60000;           /* strong red text */
   font-weight: bold;
   padding: 0.8rem 1rem;
-  margin-bottom: 1rem;
+  margin: 0 auto;
   border-radius: 6px;
   text-align: center;
   border: 1px solid #ff4d4d;
+  font-style: italic;
+   max-width: 500px;
 }
 
 /* Validation Error List */
@@ -794,8 +798,10 @@ footer a:hover {
   font-weight: bold;
   padding: 0.8rem 1rem;
   border-radius: 6px;
-  margin-bottom: 1rem;
+  margin: 0 auto;
   list-style: disc inside;
+  font-style: italic;
+  max-width: 500px;
 }
 
 .error-list li {
@@ -818,10 +824,10 @@ h1 {
 ============================== */
 .action-buttons {
   display: flex;
-  justify-content: center; /* centers the buttons horizontally */
-  gap: 15px;              /* space between buttons */
-  flex-wrap: wrap;         /* allows buttons to wrap on smaller screens */
-  margin: 20px 0;          /* spacing above and below */
+  justify-content: center;
+  gap: 15px;              
+  flex-wrap: wrap;         
+  margin: 20px 0;          
 }
 
 .action-buttons a {

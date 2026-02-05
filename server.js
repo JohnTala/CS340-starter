@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 })
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true })) 
 
 /* ===== Static Files ===== */
 app.use(express.static(path.join(__dirname, "public")))

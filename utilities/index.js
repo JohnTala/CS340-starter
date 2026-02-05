@@ -71,8 +71,7 @@ Util.buildClassificationGrid = function (vehicles = []) {
 
 /* ************************
  * Build classification list for dropdowns (sticky)
- * classification_id = selected value (optional)
- * return HTML <select> element as string
+ * 
  ************************** */
 Util.buildClassificationList = async function (selectedId = null) {
   let data = [];
