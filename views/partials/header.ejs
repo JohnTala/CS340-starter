@@ -1,8 +1,17 @@
 <header id="top-header">
   <span class="siteName">
-     <img src="/images/site/icon.png" alt="" srcset="">
+     <img src="/images/site/icon.png" alt="">
   </span>
   <div id="tools">
-    <h3><a title="Click to log in" href="/account/login">MY ACCOUNT</a></h3>
+    <% if (loggedin) { %>
+      <h3>
+        <a href="/account/" title="Go to Account Management">
+          Welcome <%= accountData.account_firstname %>
+        </a>
+      </h3>
+      <h3><a href="/account/logout">Logout</a></h3>
+    <% } else { %>
+      <h3><a title="Click to log in" href="/account/login">MY ACCOUNT</a></h3>
+    <% } %>
   </div>
 </header>

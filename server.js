@@ -5,6 +5,7 @@ const expressEjsLayouts = require("express-ejs-layouts")
 const session = require("express-session")
 const pool = require("./database")
 const bodyParser = require("body-parser")
+const cookieParser=require("cookie-parser")
 
 // Controllers & Routes
 const baseController = require("./controllers/baseController")
@@ -13,6 +14,7 @@ const accountRoute = require("./routes/accountRoute")
 
 // Utilities
 const utilities = require("./utilities")
+
 
 const app = express()
 
@@ -25,6 +27,8 @@ app.set("layout", "layouts/layout")
 /* ===== Middleware ===== */
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 app.use(
   session({

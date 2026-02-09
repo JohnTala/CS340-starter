@@ -1,5 +1,4 @@
-
-const express = require("express");
+const express = require("express"); 
 const router = express.Router();
 const invController = require("../controllers/invController");
 const utilities = require("../utilities");
@@ -20,5 +19,26 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 
 // Single vehicle detail
 router.get("/detail/:invId", utilities.handleErrors(invController.buildVehicleDetail));
+
+// Get Inventory for AJAX
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+// Edit Inventory
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+
+// Delete Inventory (confirmation view)
+router.get(
+  "/delete/:inv_id",
+  utilities.handleErrors(invController.buildDeleteConfirmView)
+);
+
+// Update Inventory
+router.post("/update", utilities.handleErrors(invController.updateInventory));
+
+// Delete Inventory (process delete)
+router.post(
+  "/delete",
+  utilities.handleErrors(invController.deleteInventory)
+);
 
 module.exports = router;

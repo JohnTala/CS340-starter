@@ -1,0 +1,27 @@
+<main class="account-main">
+  <h1><%= title %></h1>
+
+  <!-- Flash Messages -->
+  <% if (success_messages && success_messages.length > 0) { %>
+    <% success_messages.forEach(msg => { %>
+      <div class="flash-success"><%= msg %></div>
+    <% }) %>
+  <% } %>
+
+  <% if (error_messages && error_messages.length > 0) { %>
+    <% error_messages.forEach(msg => { %>
+      <div class="flash-error"><%= msg %></div>
+    <% }) %>
+  <% } %>
+
+  <section class="account-info">
+    <h2>Account Information</h2>
+    <p><strong>First Name:</strong> <%= account_firstname %></p>
+    <p><strong>Account Type:</strong> <%= account_type %></p>
+
+    <!-- Edit Account Link -->
+    <p>
+      <a href="/account/update/<%= account_id %>" class="edit-link">Edit Account Information</a>
+    </p>
+  </section>
+</main>

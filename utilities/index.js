@@ -1,4 +1,6 @@
 const invModel = require("../models/inventory-model");
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 const Util = {};
 
@@ -40,7 +42,6 @@ Util.buildClassificationGrid = function (vehicles = []) {
 
   let grid = '<ul id="inv-display">';
   vehicles.forEach((vehicle) => {
-    // Use fallback images if missing
     const image = vehicle.inv_image && vehicle.inv_image.length
       ? vehicle.inv_image
       : "/images/vehicles/no-image.png";
@@ -71,7 +72,6 @@ Util.buildClassificationGrid = function (vehicles = []) {
 
 /* ************************
  * Build classification list for dropdowns (sticky)
- * 
  ************************** */
 Util.buildClassificationList = async function (selectedId = null) {
   let data = [];
@@ -99,6 +99,39 @@ Util.buildClassificationList = async function (selectedId = null) {
   selectHTML += "</select>";
   return selectHTML;
 };
+
+/* ****************************************
+ * Middleware to check token validity
+ **************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  res.locals.accountData = null
+  res.locals.loggedin = 0
+
+  if (req.cookies.jwt) {
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, (err, accountData) => {
+      if (!err) {
+        res.locals.accountData = accountData
+        res.locals.loggedin = 1
+      }
+      next()
+    })
+  } else {
+    next()
+  }
+}
+
+
+/* ****************************************
+ * Check if client is logged in (basic authorization)
+ **************************************** */
+Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedin) {
+    next()
+  } else {
+    req.flash("error", "Please log in.") // changed to "error" so template shows
+    return res.redirect("/account/login")
+  }
+}
 
 /* ****************************************
  * Middleware For Handling Errors

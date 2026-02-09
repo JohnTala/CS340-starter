@@ -1,62 +1,56 @@
-<h1><%= title %></h1>
+<main class="account-main">
+  <h1>Login</h1>
 
-<!-- Flash Messages -->
-<% if (success_messages.length > 0) { %>
-  <% success_messages.forEach(msg => { %>
-    <div class="flash-success"><%= msg %></div>
-  <% }) %>
-<% } %>
-
-<% if (error_messages.length > 0) { %>
-  <% error_messages.forEach(msg => { %>
-    <div class="flash-error"><%= msg %></div>
-  <% }) %>
-<% } %>
-
-<!-- Validation Errors -->
-<% if (errors && errors.array().length > 0) { %>
-  <ul class="error-list">
-    <% errors.array().forEach(error => { %>
-      <li><%= error.msg %></li>
+  <!-- Flash Success Messages -->
+  <% if (success_messages.length > 0) { %>
+    <% success_messages.forEach(msg => { %>
+      <div class="flash-success"><%= msg %></div>
     <% }) %>
-  </ul>
-<% } %>
+  <% } %>
 
-<div class="form-container login-form">
-  <form method="post" action="/account/login" novalidate>
-    <label for="account_email">Email</label>
-    <input
-      type="email"
-      id="account_email"
-      name="account_email"
-      required
-      autocomplete="email"
-      value="<%= account_email || '' %>"
-    >
+  <!-- Flash Error Messages -->
+  <% if (error_messages.length > 0) { %>
+    <% error_messages.forEach(msg => { %>
+      <div class="flash-error"><%= msg %></div>
+    <% }) %>
+  <% } %>
 
-    <label for="account_password">Password</label>
-    <input
-      type="password"
-      id="account_password"
-      name="account_password"
-      required
-      autocomplete="current-password"
-    >
+  <div class="form-container login-form">
+    <form method="post" action="/account/login" novalidate>
+      <label for="account_email">Email</label>
+      <input
+        type="email"
+        id="account_email"
+        name="account_email"
+        required
+        autocomplete="email"
+        value="<%= account_email || '' %>"
+      >
 
-    <label class="show-password">
-      <input type="button" id="togglePassword" value="Show password">
-    </label>
+      <label for="account_password">Password</label>
+      <input
+        type="password"
+        id="account_password"
+        name="account_password"
+        required
+        autocomplete="current-password"
+      >
 
-    <button type="submit">Login</button>
+      <!-- Show/Hide Password -->
+      <label class="show-password">
+        <input type="button" id="togglePassword" value="Show password">
+      </label>
 
-    <p class="signup-link">
-      No account? <a href="/account/register">Sign up</a>
-    </p>
-  </form>
-</div>
+      <button type="submit">Login</button>
 
-<!-- Show/Hide Password Script -->
-<script type="module">
-  import { setupShowPassword } from '/js/showPassword.js';
-  setupShowPassword('#togglePassword', '#account_password');
-</script>
+      <p class="signup-link">
+        No account? <a href="/account/register">Sign up</a>
+      </p>
+    </form>
+  </div>
+
+  <script type="module">
+    import { setupShowPassword } from '/js/showPassword.js';
+    setupShowPassword('#togglePassword', '#account_password');
+  </script>
+</main>
