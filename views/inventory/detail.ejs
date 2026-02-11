@@ -1,15 +1,87 @@
-<h1><%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
+<main>
+  <h1><%= vehicle.inv_make || "Vehicle" %> <%= vehicle.inv_model || "" %></h1>
 
-<div class="vehicle-detail">
-  <div class="vehicle-image">
-    <img src="<%= vehicle.inv_image %>" alt="<%= vehicle.inv_make %> <%= vehicle.inv_model %>">
+  <div class="vehicle-detail-container">
+    <!-- Vehicle Image -->
+    <div class="vehicle-image">
+      <img 
+        src="<%= vehicle.inv_image && vehicle.inv_image.trim() !== '' ? vehicle.inv_image : '/images/vehicles/no-image.png' %>" 
+        alt="<%= vehicle.inv_make || 'Vehicle' %> <%= vehicle.inv_model || '' %>"
+      >
+    </div>
+
+    <!-- Vehicle Info -->
+    <div class="vehicle-info">
+      <p><strong>Year:</strong> <%= vehicle.inv_year || "N/A" %></p>
+      <p><strong>Price:</strong> $<%= vehicle.inv_price ? new Intl.NumberFormat('en-US').format(vehicle.inv_price) : "N/A" %></p>
+      <p><strong>Miles:</strong> <%= vehicle.inv_miles ? vehicle.inv_miles.toLocaleString() : "N/A" %> km</p>
+      <p><strong>Color:</strong> <%= vehicle.inv_color || "N/A" %></p>
+
+      <p><strong>Status:</strong> 
+        <span class="status <%= vehicle.inv_status ? vehicle.inv_status.toLowerCase() : '' %>">
+          <%= vehicle.inv_status || "Unknown" %>
+        </span>
+      </p>
+
+      <p><strong>Description:</strong></p>
+      <p><%= vehicle.inv_description || "No description available" %></p>
+
+      <a href="/inv/type/<%= vehicle.classification_id %>" class="back-link">&larr; Back to Inventory</a>
+    </div>
   </div>
-  <div class="vehicle-info">
-    <p><strong>Year:</strong> <%= vehicle.inv_year || "N/A" %></p>
-    <p><strong>Price:</strong> $<%= vehicle.inv_price ? new Intl.NumberFormat('en-US').format(vehicle.inv_price) : "N/A" %></p>
-    <p><strong>Miles:</strong> <%= vehicle.inv_miles?.toLocaleString() || "N/A" %></p>
-    <p><strong>Color:</strong> <%= vehicle.inv_color || "N/A" %></p>
-    <p><strong>Description:</strong> <%= vehicle.inv_description || "No description available" %></p>
-    <a href="/inv/type/<%= vehicle.classification_id %>">Back to Inventory</a>
-  </div>
-</div>
+</main>
+<style>
+  .vehicle-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+
+.vehicle-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.vehicle-info p {
+  margin: 0;
+}
+
+.back-link {
+  margin-top: 1rem;
+  color: #2a9d8f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Status Colors */
+.status.available { color: green; font-weight: bold; }
+.status.sold { color: red; font-weight: bold; }
+.status.reserved { color: orange; font-weight: bold; }
+.status { font-weight: bold; }
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .vehicle-detail-container {
+    grid-template-columns: 1fr;
+  }
+  .vehicle-image img {
+    max-width: 100%;
+  }
+}
+
+</style>

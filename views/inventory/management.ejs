@@ -1,13 +1,19 @@
 <main>
   <h1><%= title %></h1>
 
+  <!-- Success/Error messages -->
   <% if (message) { %>
     <p class="flash-success"><%= message %></p>
   <% } %>
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg || error %></li>
+      <% }) %>
+    </ul>
+  <% } %>
 
-  <!-- ============================
-       Action Buttons
-  ============================ -->
+  <!-- Action Buttons -->
   <div class="action-buttons">
     <a href="/inv/add-classification" class="action-btn">Add New Classification</a>
     <a href="/inv/add-inventory" class="action-btn">Add New Vehicle</a>
@@ -16,15 +22,30 @@
   <h2>Manage Inventory</h2>
   <p class="info-text">Choose a classification to see those inventory items.</p>
 
-  <!-- Classification dropdown -->
+  <!-- Classification Dropdown -->
   <%- classificationSelect %>
 
   <!-- Inventory Table (populated via AJAX) -->
-  <table id="inventoryDisplay"></table>
+  <table id="inventoryDisplay">
+    <thead>
+      <tr>
+        <th>Vehicle</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Price</th>
+        <th>Miles</th>
+        <th>Color</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Rows populated dynamically -->
+    </tbody>
+  </table>
 
   <noscript>JavaScript must be enabled to use this page.</noscript>
 
-  <!-- Script for dynamic inventory display -->
   <script src="../../js/inventory.js"></script>
-
-  
+</main>

@@ -1,14 +1,30 @@
+<!-- Main Content -->
 <main>
   <h1><%= title %></h1>
 
+  <!-- Success Message -->
   <% if (message) { %>
     <p class="flash-success"><%= message %></p>
   <% } %>
 
-  <!-- Inventory Grid -->
-  <% if (grid) { %>
-    <%- grid %>
-  <% } else { %>
-    <p class="notice">No vehicles available for this classification.</p>
+  <!-- Error Messages -->
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(err => { %>
+        <li><%= typeof err === 'object' && err.msg ? err.msg : err %></li>
+      <% }) %>
+    </ul>
   <% } %>
+
+  <!-- Vehicle Grid -->
+  <div class="vehicle-grid">
+    <% if (grid && grid.trim() !== "") { %>
+      <%- grid %>
+    <% } else { %>
+      <p class="notice">No vehicles found for this classification.</p>
+    <% } %>
+  </div>
+
+  <!-- Back Link -->
+  <a href="/inv" class="back-link">&larr; Back to Inventory Management</a>
 </main>

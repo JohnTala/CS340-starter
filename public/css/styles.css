@@ -810,6 +810,83 @@ margin-top: 10px;
 font-style: italic;
 }
 
+/* Make wrapper always take full viewport height */
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* ensures wrapper is at least viewport height */
+}
+
+/* Make main grow to fill available space between header/nav and footer */
+main {
+  flex: 1;
+}
+
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.vehicle-image img {
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* VEHICLE DETAIL IMAGE */
+.vehicle-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start; /* keep content aligned at the top */
+}
+
+/* Image container */
+.vehicle-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #f0f0f0; /* light grey background if no image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image itself */
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* crop or scale nicely */
+  display: block;
+}
+
+/* Vehicle info text */
+.vehicle-info p {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+  color: #333;
+}
+
+/* Make the layout responsive */
+@media screen and (max-width: 768px) {
+  .vehicle-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .vehicle-image {
+    max-width: 100%;
+  }
+}
+
+
 /* =================================================
 MANAGE INVENTORY HEADINGS & TEXT
 ================================================= */
@@ -978,4 +1055,57 @@ noscript {
 
 .account-info{
   margin-left: 10px;
+}
+
+/*Status*/
+.vehicle-status.available { color: green; font-weight: bold; }
+.vehicle-status.sold { color: red; font-weight: bold; }
+.vehicle-status.reserved { color: orange; font-weight: bold; }
+
+/* Inventory Grid */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.vehicle-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.vehicle-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Status styling */
+.status {
+  font-weight: bold;
+}
+
+.status-available {
+  color: green;
+}
+
+.status-sold {
+  color: red;
+}
+
+.status-reserved {
+  color: orange;
+}
+
+/* Messages */
+.flash-success {
+  color: green;
+  font-weight: bold;
+}
+
+.notice {
+  font-style: italic;
+  color: #555;
 }

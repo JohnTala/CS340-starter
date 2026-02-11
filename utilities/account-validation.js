@@ -1,31 +1,26 @@
+const utilities = require(".");
+const accountModel = require("../models/account-model");
+const { body, validationResult } = require("express-validator");
 
-
-const utilities = require(".")
-const accountModel = require("../models/account-model")
-const { body, validationResult } = require("express-validator")
-
-const validate = {}
+const validate = {};
 
 /* **********************************
  * Registration Data Validation Rules
  * ********************************* */
 validate.registrationRules = () => {
   return [
-    // First name
     body("account_firstname")
       .trim()
       .escape()
       .notEmpty()
       .withMessage("Please provide a first name."),
 
-    // Last name
     body("account_lastname")
       .trim()
       .escape()
       .notEmpty()
       .withMessage("Please provide a last name."),
 
-    // Email + custom DB check
     body("account_email")
       .trim()
       .notEmpty()
@@ -35,13 +30,12 @@ validate.registrationRules = () => {
       .withMessage("A valid email is required.")
       .normalizeEmail()
       .custom(async (account_email) => {
-        const emailExists = await accountModel.checkExistingEmail(account_email)
+        const emailExists = await accountModel.checkExistingEmail(account_email);
         if (emailExists) {
-          throw new Error("Email exists. Please log in or use a different email")
+          throw new Error("Email exists. Please log in or use a different email.");
         }
       }),
 
-    // Password
     body("account_password")
       .trim()
       .notEmpty()
@@ -55,29 +49,31 @@ validate.registrationRules = () => {
         minSymbols: 1,
       })
       .withMessage("Password does not meet requirements."),
-  ]
-}
+  ];
+};
 
 /* ******************************
  * Check registration data
  * ***************************** */
 validate.checkRegData = async (req, res, next) => {
-  const { account_firstname, account_lastname, account_email } = req.body
-  const errors = validationResult(req)
+  const { account_firstname, account_lastname, account_email } = req.body;
+  const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    const nav = await utilities.getNav()
+    const nav = await utilities.getNav();
+
     return res.render("account/register", {
       title: "Register",
       nav,
-      errors,
       account_firstname,
       account_lastname,
-      account_email
-    })
+      account_email,
+      message: null,
+      errors: errors.array(), // array of { msg }
+    });
   }
-  next()
-}
+  next();
+};
 
 /* **********************************
  * Login Data Validation Rules
@@ -97,27 +93,125 @@ validate.loginRules = () => {
       .trim()
       .notEmpty()
       .withMessage("Password is required."),
-  ]
-}
+  ];
+};
 
 /* ******************************
  * Check login data
  * ***************************** */
 validate.checkLoginData = async (req, res, next) => {
-  const { account_email } = req.body
-  const errors = validationResult(req)
+  const { account_email } = req.body;
+  const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    const nav = await utilities.getNav()
+    const nav = await utilities.getNav();
+
     return res.render("account/login", {
       title: "Login",
       nav,
-      errors,
-      account_email
-    })
+      account_email,
+      message: null,
+      errors: errors.array(),
+    });
   }
+  next();
+};
 
-  next()
-}
+/* **********************************
+ * Update Account Info Validation Rules
+ * ********************************* */
+validate.updateInfoRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Please provide a first name."),
 
-module.exports = validate
+    body("account_lastname")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Please provide a last name."),
+
+    body("account_email")
+      .trim()
+      .notEmpty()
+      .withMessage("A valid email is required.")
+      .bail()
+      .isEmail()
+      .withMessage("A valid email is required.")
+      .normalizeEmail()
+      .custom(async (account_email, { req }) => {
+        const accountExists = await accountModel.getAccountByEmail(account_email);
+        if (accountExists && accountExists.account_id != req.body.account_id) {
+          throw new Error("Email already in use by another account.");
+        }
+      }),
+  ];
+};
+
+/* ******************************
+ * Check Update Account Info
+ * ***************************** */
+validate.checkUpdateInfo = async (req, res, next) => {
+  const { account_firstname, account_lastname, account_email, account_id } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav();
+
+    return res.render("account/update-account", {
+      title: "Update Account",
+      nav,
+      accountData: { account_id, account_firstname, account_lastname, account_email },
+      message: null,
+      errors: { accountInfo: errors.array(), password: [] }, // separate form errors
+    });
+  }
+  next();
+};
+
+/* **********************************
+ * Update Password Validation Rules
+ * ********************************* */
+validate.updatePasswordRules = () => {
+  return [
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Password cannot be empty.")
+      .bail()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ];
+};
+
+/* ******************************
+ * Check Update Password
+ * ***************************** */
+validate.checkUpdatePassword = async (req, res, next) => {
+  const { account_id } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    const nav = await utilities.getNav();
+
+    return res.render("account/update-account", {
+      title: "Update Account",
+      nav,
+      accountData: { account_id },
+      message: null,
+      errors: { accountInfo: [], password: errors.array() }, // separate form errors
+    });
+  }
+  next();
+};
+
+module.exports = validate;

@@ -1,19 +1,22 @@
 <main class="account-main">
   <h1>Update Account</h1>
 
-  <% if (success_messages.length > 0) { %>
-    <% success_messages.forEach(msg => { %>
-      <div class="flash-success"><%= msg %></div>
-    <% }) %>
+  <!-- Success Message -->
+  <% if (message) { %>
+    <div class="flash-success"><%= message %></div>
   <% } %>
 
-  <% if (error_messages.length > 0) { %>
-    <% error_messages.forEach(msg => { %>
-      <div class="flash-error"><%= msg %></div>
-    <% }) %>
+  <!-- Update Account Info Errors -->
+  <% if (errors && errors.accountInfo && errors.accountInfo.length > 0) { %>
+    <ul class="error-list">
+      <% errors.accountInfo.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
   <% } %>
 
   <div class="form-container update-form">
+
     <!-- Update Account Info -->
     <form method="post" action="/account/update-info" novalidate>
       <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
@@ -23,8 +26,8 @@
         type="text"
         id="account_firstname"
         name="account_firstname"
-        value="<%= accountData.account_firstname %>"
         required
+        value="<%= accountData.account_firstname %>"
       >
 
       <label for="account_lastname">Last Name</label>
@@ -32,8 +35,8 @@
         type="text"
         id="account_lastname"
         name="account_lastname"
-        value="<%= accountData.account_lastname %>"
         required
+        value="<%= accountData.account_lastname %>"
       >
 
       <label for="account_email">Email</label>
@@ -41,14 +44,23 @@
         type="email"
         id="account_email"
         name="account_email"
-        value="<%= accountData.account_email %>"
         required
+        value="<%= accountData.account_email %>"
       >
 
-      <button type="submit">Update Info</button>
+      <button type="submit">Update Account Info</button>
     </form>
 
     <hr>
+
+    <!-- Update Password Errors -->
+    <% if (errors && errors.password && errors.password.length > 0) { %>
+      <ul class="error-list">
+        <% errors.password.forEach(err => { %>
+          <li><%= err.msg %></li>
+        <% }) %>
+      </ul>
+    <% } %>
 
     <!-- Update Password -->
     <form method="post" action="/account/update-password" novalidate>
@@ -61,8 +73,10 @@
         name="account_password"
         required
       >
+
       <p class="password-requirements">
-        Password must be at least 12 characters, include 1 capital letter, 1 number, and 1 special character
+        Password must be at least 12 characters, include 1 capital letter,
+        1 number, and 1 special character.
       </p>
 
       <label class="show-password">
@@ -71,6 +85,7 @@
 
       <button type="submit">Update Password</button>
     </form>
+
   </div>
 
   <script type="module">

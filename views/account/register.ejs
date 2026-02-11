@@ -1,16 +1,18 @@
 <main class="account-main">
   <h1>Register</h1>
 
-  <% if (success_messages.length > 0) { %>
-    <% success_messages.forEach(msg => { %>
-      <div class="flash-success"><%= msg %></div>
-    <% }) %>
+  <!-- Success Message -->
+  <% if (message) { %>
+    <div class="flash-success"><%= message %></div>
   <% } %>
 
-  <% if (error_messages.length > 0) { %>
-    <% error_messages.forEach(msg => { %>
-      <div class="flash-error"><%= msg %></div>
-    <% }) %>
+  <!-- Error Messages -->
+  <% if (errors && errors.length > 0) { %>
+    <ul class="error-list">
+      <% errors.forEach(err => { %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
   <% } %>
 
   <div class="form-container register-form">
@@ -51,11 +53,12 @@
         required
         autocomplete="new-password"
       >
+
       <p class="password-requirements">
-        Password must be at least 12 characters, include 1 capital letter, 1 number, and 1 special character
+        Password must be at least 12 characters, include 1 capital letter,
+        1 number, and 1 special character.
       </p>
 
-      <!-- Show/Hide Password -->
       <label class="show-password">
         <input type="button" id="togglePassword" value="Show password">
       </label>
