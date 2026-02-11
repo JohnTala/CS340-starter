@@ -21,15 +21,15 @@
 
       <!-- Make -->
       <label for="inv_make">Make</label>
-      <input type="text" id="inv_make" name="inv_make" value="<%= vehicle.inv_make || '' %>" required pattern="[A-Za-z0-9 ]+">
+      <input type="text" id="inv_make" name="inv_make" value="<%= vehicle.inv_make || '' %>" required pattern="[A-Za-z0-9 ]+" title="Only letters, numbers, and spaces">
 
       <!-- Model -->
       <label for="inv_model">Model</label>
-      <input type="text" id="inv_model" name="inv_model" value="<%= vehicle.inv_model || '' %>" required pattern="[A-Za-z0-9 ]+">
+      <input type="text" id="inv_model" name="inv_model" value="<%= vehicle.inv_model || '' %>" required pattern="[A-Za-z0-9 ]+" title="Only letters, numbers, and spaces">
 
       <!-- Year -->
       <label for="inv_year">Year</label>
-      <input type="text" id="inv_year" name="inv_year" value="<%= vehicle.inv_year || '' %>" required pattern="\d{4}">
+      <input type="text" id="inv_year" name="inv_year" value="<%= vehicle.inv_year || '' %>" required pattern="\d{4}" title="Enter a 4-digit year">
 
       <!-- Description -->
       <label for="inv_description">Description</label>
@@ -67,3 +67,4 @@
     </form>
   </div>
 </main>
+

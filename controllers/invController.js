@@ -31,8 +31,9 @@ invCont.buildAddClassification = async (req, res) => {
   const errors = req.flash("error") || [];
 
   res.render("inventory/add-classification", {
-    title: "Add Classification",
+    title: "Add New Classification",
     nav,
+    classification_name: "", // initialize to empty string
     message,
     errors,
   });
@@ -43,14 +44,24 @@ invCont.buildAddClassification = async (req, res) => {
  *************************** */
 invCont.addClassification = async (req, res) => {
   const { classification_name } = req.body;
-  if (!classification_name) {
+
+  // Server-side validation
+  if (!classification_name || classification_name.trim() === "") {
     req.flash("error", "Classification name is required.");
-    return res.redirect("/inv/add-classification");
+    return res.render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav: await utilities.getNav(),
+      classification_name: classification_name || "",
+      message: null,
+      errors: req.flash("error"),
+    });
   }
 
-  await invModel.addClassification(classification_name);
-  req.flash("success", "Classification added successfully.");
-  res.redirect("/inv");
+  // Add classification to database
+  await invModel.addClassification(classification_name.trim());
+
+  req.flash("success", `Classification "${classification_name}" added successfully.`);
+  res.redirect("/inv/add-classification");
 };
 
 /* ***************************
@@ -146,10 +157,7 @@ invCont.buildByClassificationId = async (req, res) => {
   const nav = await utilities.getNav();
   const classificationId = parseInt(req.params.classificationId);
 
-  // Fetch vehicles
   const vehicles = await invModel.getInventoryByClassificationId(classificationId);
-
-  // Build HTML grid
   const grid = utilities.buildClassificationGrid(vehicles);
 
   res.render("inventory/classification", {
@@ -174,7 +182,6 @@ invCont.buildVehicleDetail = async (req, res) => {
     return res.redirect("/inv");
   }
 
-  // Ensure placeholders
   vehicle.inv_image = vehicle.inv_image?.trim() || "/images/vehicles/no-image.png";
   vehicle.inv_thumbnail = vehicle.inv_thumbnail?.trim() || "/images/vehicles/no-image-tn.png";
 

@@ -157,8 +157,6 @@ nav {
 }
 
 
-
-
 /* =================================================
    IMAGE RESET
 ================================================= */
@@ -831,16 +829,19 @@ main {
   max-width: 500px;
   border-radius: 12px;
   overflow: hidden;
-  background-color: #f0f0f0; /* light grey background if no image */
+  background-color: #f0f0f0; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .vehicle-image img {
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  width: 100%;
+  height: auto;  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
+
 /* Vehicle info text */
 .vehicle-info p {
   margin-bottom: 15px;
@@ -855,10 +856,15 @@ main {
     gap: 20px;
   }
 
-  .vehicle-image {
-    max-width: 100%;
+
+  .vehicle-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
+
 }
+
 
 
 /* =================================================
@@ -933,6 +939,77 @@ min-width: 200px;
 }
 
 /* =================================================
+   RESPONSIVE INVENTORY TABLE
+================================================= */
+
+/* Tablet */
+@media screen and (max-width: 992px) {
+
+  #inventoryDisplay {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+}
+
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+
+  main h1 {
+    font-size: 1.6rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-buttons a {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  #inventoryDisplay {
+    display: block;
+    overflow-x: auto;
+    border: 0;
+  }
+
+  #inventoryDisplay thead {
+    background-color: #f2f2f2;
+  }
+
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Very Small Devices */
+@media screen and (max-width: 480px) {
+
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    font-size: 0.85rem;
+    padding: 0.4rem;
+  }
+
+  .info-text {
+    text-align: center;
+  }
+}
+
+/* =================================================
 DASHBOARD ACTION BUTTONS
 ================================================= */
 .action-buttons {
@@ -952,6 +1029,7 @@ text-decoration: none;
 border-radius: 8px;
 font-weight: bold;
 transition: background-color 0.3s, transform 0.2s;
+background-color: #006622;
 }
 
 #add-classification-link {
@@ -1036,6 +1114,89 @@ noscript {
 .vehicle-status.sold { color: red; font-weight: bold; }
 .vehicle-status.reserved { color: orange; font-weight: bold; }
 
+
+
+  .vehicle-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.vehicle-info p {
+  margin: 0;
+}
+
+.back-link {
+  margin-top: 1rem;
+  color: #2a9d8f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Status Colors */
+.status.available { color: green; font-weight: bold; }
+.status.sold { color: red; font-weight: bold; }
+.status.reserved { color: orange; font-weight: bold; }
+.status { font-weight: bold; }
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .vehicle-detail-container {
+    grid-template-columns: 1fr;
+  }
+  .vehicle-image img {
+    max-width: 100%;
+
+  }
+
+  .vehicle-info{
+    text-align: justify;
+    margin-left: 20px;
+  }
+}
+
+
+/* Make the layout responsive */
+@media screen and (max-width: 768px) {
+
+  .vehicle-detail-container {
+    grid-template-columns: 1fr;
+  }
+  .vehicle-detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .vehicle-image {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+
+  .vehicle-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .vehicle-info{
+    text-align: justify;
+    margin-left: 20px;
+  }
+}
+
 .back-link{
   margin:20px ;
   font-weight: 500;
@@ -1078,11 +1239,7 @@ noscript {
   color: orange;
 }
 
-/* Messages 
-.flash-success {
-  color: green;
-  font-weight: bold;
-}*/
+
 
 .notice {
   font-style: italic;

@@ -1,7 +1,7 @@
 <main>
   <h1><%= title %></h1>
 
-  <!-- Success/Error messages -->
+  <!-- Flash Messages -->
   <% if (message) { %>
     <p class="flash-success"><%= message %></p>
   <% } %>
@@ -13,7 +13,7 @@
     </ul>
   <% } %>
 
-  <!-- Action Buttons -->
+  <!-- Action Buttons: Add Classification / Add Vehicle -->
   <div class="action-buttons">
     <a href="/inv/add-classification" class="action-btn">Add New Classification</a>
     <a href="/inv/add-inventory" class="action-btn">Add New Vehicle</a>
@@ -25,28 +25,30 @@
   <!-- Classification Dropdown -->
   <%- classificationSelect %>
 
-  <!-- Inventory Table (populated via AJAX) -->
-  <table id="inventoryDisplay">
-    <thead>
-      <tr>
-        <th>Vehicle</th>
-        <th>Make</th>
-        <th>Model</th>
-        <th>Year</th>
-        <th>Price</th>
-        <th>Miles</th>
-        <th>Color</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Rows populated dynamically -->
-    </tbody>
-  </table>
+  <!-- Inventory Table -->
+  <div class="table-responsive">
+    <table id="inventoryDisplay">
+      <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>Make</th>
+          <th>Model</th>
+          <th>Year</th>
+          <th>Price</th>
+          <th>Miles</th>
+          <th>Color</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows populated dynamically via JS -->
+      </tbody>
+    </table>
+  </div>
 
   <noscript>JavaScript must be enabled to use this page.</noscript>
-  
 
   <script src="../../js/inventory.js"></script>
 </main>
+
