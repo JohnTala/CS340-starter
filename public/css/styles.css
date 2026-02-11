@@ -54,20 +54,22 @@ header a {
    NAVIGATION
 ================================================= */
 
-/* ===== NAV WRAPPER ===== */
 nav {
   margin: 0 10px;
-}*/
-/* ===== NAVBAR CONTAINER ===== */
+}
 
+/* ===== NAVBAR CONTAINER ===== */
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background-color: #6ab4aa;
-  padding: 10px 20px;
+  padding: 10px 0; /* no horizontal padding */
   border-radius: 8px;
   position: relative;
+}
+
+#nav-links {
+  flex: 1;
 }
 
 /* ===== NAV LIST ===== */
@@ -77,19 +79,17 @@ nav {
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: space-around; /* evenly spread links */
+  justify-content: space-around;
   flex-wrap: wrap;
   font-weight: 600;
-   background-color: #6ab4aa;
+  background-color: #6ab4aa;
 }
 
-/* Each nav item takes equal space */
 #nav-links ul li {
   flex: 1;
   text-align: center;
 }
 
-/* Nav links */
 #nav-links ul li a {
   display: block;
   padding: 10px 12px;
@@ -507,12 +507,13 @@ img {
   padding: 30px;
   max-width: 1100px;
   margin: 0 auto;
-}
+   align-items: start;
+} 
 
 .vehicle-image img {
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
+} 
 
 .vehicle-info p {
   margin-bottom: 15px;
@@ -822,30 +823,7 @@ main {
   flex: 1;
 }
 
-.vehicle-detail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
 
-.vehicle-image img {
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-}
-
-/* VEHICLE DETAIL IMAGE */
-.vehicle-detail {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 30px;
-  max-width: 1100px;
-  margin: 0 auto;
-  align-items: start; /* keep content aligned at the top */
-}
 
 /* Image container */
 .vehicle-image {
@@ -859,14 +837,10 @@ main {
   justify-content: center;
 }
 
-/* Image itself */
 .vehicle-image img {
-  width: 100%;
-  height: auto;
-  object-fit: cover; /* crop or scale nicely */
-  display: block;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
-
 /* Vehicle info text */
 .vehicle-info p {
   margin-bottom: 15px;
@@ -1062,6 +1036,11 @@ noscript {
 .vehicle-status.sold { color: red; font-weight: bold; }
 .vehicle-status.reserved { color: orange; font-weight: bold; }
 
+.back-link{
+  margin:20px ;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
 /* Inventory Grid */
 .inventory-grid {
   display: grid;
@@ -1099,11 +1078,11 @@ noscript {
   color: orange;
 }
 
-/* Messages */
+/* Messages 
 .flash-success {
   color: green;
   font-weight: bold;
-}
+}*/
 
 .notice {
   font-style: italic;

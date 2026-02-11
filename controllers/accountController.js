@@ -13,7 +13,7 @@ accountController.buildLogin = async (req, res) => {
   res.render("account/login", {
     title: "Login",
     nav,
-    account_email: "", // always defined
+    account_email: "", 
     message: req.flash("success").join(" ") || null,
     errors: req.flash("error") || [],
   });
